@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700;900&display=swap" rel="stylesheet">
+<title>CLAN ĐẠI VIỆT TOP 1 VIỆT NAM</title>
+
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+
+<div class="header">
+
+🏆 CLAN ĐẠI VIỆT TOP 1 VIỆT NAM
+
+<br>
+
+⚔️ CLASH OF CLANS
+
+</div>
+
+
+
+<div class="title">
+
+🔥 HỆ THỐNG GIẢI ĐẤU ESPORT 🔥
+
+</div>
+
+
+
+
+<div class="container">
+
+
+
+<div class="card">
+
+<div class="icon">🏆</div>
+
+<div class="name">
+NGOẠI HẠNG ANH
+</div>
+
+<a class="btn"
+href="javascript:void(0)"
+onclick="showPage('epl')">
+
+VÀO GIẢI
+
+</a>
+
+</div>
+
+
+
+
+<div class="card">
+
+<div class="icon">🏅</div>
+
+<div class="name">
+UEFA CHAMPIONS LEAGUE
+</div>
+
+<a class="btn"
+href="javascript:void(0)"
+onclick="showPage('c1')">
+
+VÀO GIẢI
+
+</a>
+
+</div>
+
+
+
+
+<div class="card">
+
+<div class="icon">⚔️</div>
+
+<div class="name">
+GIẢI 5 VS 5
+</div>
+
+<a class="btn"
+href="javascript:void(0)"
+onclick="showPage('5vs5')">
+
+VÀO GIẢI
+
+</a>
+
+</div>
+
+<div class="card">
+
+<div class="icon">⚔️</div>
+
+<div class="name">
+GIẢI 3 VS 3
+</div>
+
+<a class="btn"
+href="javascript:void(0)"
+onclick="showPage('3vs3')">
+
+VÀO GIẢI
+
+</a>
+
+</div>
+<div class="card">
+
+<div class="icon">💰</div>
+
+<div class="name">
+TRAO THƯỞNG
+</div>
+
+<a class="btn"
+href="javascript:void(0)"
+onclick="showPage('reward')">
+
+XEM
+
+</a>
+
+</div>
+
+<div class="card">
+
+<div class="icon">🥇</div>
+
+<div class="name">
+HUYỀN THOẠI 1
+</div>
+
+<a class="btn"
+href="javascript:void(0)"
+onclick="showPage('legend')">
+
+VÀO GIẢI
+
+</a>
+
+</div>
+
+
+
+
+<div class="card">
+
+<div class="icon">🎮</div>
+
+<div class="name">
+
+ESPORT
+
+</div>
+
+<a class="btn"
+href="javascript:void(0)"
+onclick="showPage('esport')">
+
+VÀO GIẢI
+
+</a>
+
+</div>
+
+<div class="card">
+
+<div class="icon">👥</div>
+
+<div class="name">
+DANH SÁCH THÀNH VIÊN
+</div>
+
+<a class="btn"
+href="javascript:void(0)"
+onclick="showPage('member')">
+
+XEM
+
+</a>
+
+</div>
+
+
+<div class="card">
+
+<div class="icon">👑</div>
+
+<div class="name">
+
+HALL OF FAME
+</div>
+
+<a class="btn"
+href="javascript:void(0)"
+onclick="showPage('hall')">
+
+XEM
+
+</a>
+
+</div>
+
+
+</div>
+
+
+
+
+
+<div id="content">
+
+<h2 style="text-align:center">
+
+🏆 Chọn giải đấu để xem
+
+</h2>
+
+</div>
+
+
+
+
+
+<div class="footer">
+
+© 2026 CLAN ĐẠI VIỆT TOP 1 VIỆT NAM
+<br>
+⚔️ CLASH OF CLANS ESPORT
+
+</div>
+
+
+
+
+
+<script>
+
+
+(async () => {
+    const data = await api("TrangChu");
+    document.querySelector(".header").innerHTML =
+        "🏆 " + data[0][1].replace(/\n/g, "<br>");
+})();
+
+
+
+
+(async () => {
+    const ds = await api("DanhSachGiai");
+
+    let cards = document.querySelectorAll(".name");
+
+    for (let i = 0; i < cards.length; i++) {
+        if (ds[i]) {
+            cards[i].innerHTML = ds[i][0];
+        }
+    }
+})();
+
+
+
+</script>
+
+
+
+<button onclick="hienLuat3vs3()" 
+style="
+background:#b8860b;
+color:white;
+padding:10px 20px;
+border-radius:10px;
+font-weight:bold;
+cursor:pointer;">
+📜 LUẬT THI ĐẤU 3VS3
+</button>
+
+<div id="luat3vs3"></div>
+
+
+<script src="script.js"></script>
+
+
+</body>
+
+</html>

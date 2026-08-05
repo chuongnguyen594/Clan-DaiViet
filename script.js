@@ -1,0 +1,924 @@
+const API_URL = "https://script.google.com/macros/s/AKfycbyAphyLOxoD-EOBjKqm-akiDv2LLYL6od4VhbPwM2r1m7FnbLhibIOanO0bRRh2m1zs2w/exec";
+
+async function api(action) {
+    const res = await fetch(API_URL + "?action=" + action);
+    return await res.json();
+}
+alert("Đã nạp javascript.html");
+function showPage(page) {
+
+let content = document.getElementById("content");
+
+
+switch(page) {
+case "member":
+
+content.innerHTML = `
+<h1>👥 DANH SÁCH THÀNH VIÊN</h1>
+
+<p>CLAN ĐẠI VIỆT - QUẢN LÝ THÀNH VIÊN</p>
+
+<hr>
+
+<div id="memberTable">
+⏳ Đang tải...
+</div>
+`;
+
+(async () => {
+    const data = await api("ThanhVien");
+    document.getElementById("memberTable").innerHTML =
+        taoBangThanhVien(data);
+})();
+
+break;
+
+case "epl":
+
+content.innerHTML = `
+<h1>🏆 NGOẠI HẠNG ANH</h1>
+<p>CLAN ĐẠI VIỆT - RANK ESPORT</p>
+
+<hr>
+
+<h2>📊 BẢNG XẾP HẠNG</h2>
+
+<div id="bxh">
+⏳ Đang tải bảng xếp hạng...
+</div>
+
+
+<hr>
+
+<h2>⭐ TOP LIA 3 SAO</h2>
+
+<div id="top3sao">
+⏳ Đang tải...
+</div>
+
+
+<hr>
+
+<h2>🛡️ TOP THỦ 1 SAO</h2>
+
+<div id="topthu">
+⏳ Đang tải...
+</div>
+
+
+<hr>
+
+<h2>🔥 CHUỖI THẮNG LIÊN TIẾP</h2>
+
+<div id="chuoithang">
+⏳ Đang tải...
+</div>
+
+<hr>
+
+<h2>📅 LỊCH THI ĐẤU & KẾT QUẢ</h2>
+
+<div id="lichEPL">
+⏳ Đang tải...
+</div>
+
+`;
+
+
+// Bảng xếp hạng
+
+(async () => {
+    const data = await api("NgoaiHangAnh");
+    document.getElementById("bxh").innerHTML = taoBang(data);
+})();
+
+
+// Top 3 sao
+
+(async () => {
+    const data = await api("Top3Sao");
+    document.getElementById("top3sao").innerHTML = taoBang(data);
+})();
+
+
+// Top thủ
+
+(async () => {
+    const data = await api("TopThu1Sao");
+    document.getElementById("topthu").innerHTML = taoBang(data);
+})();
+
+
+// Chuỗi thắng
+
+(async () => {
+    const data = await api("ChuoiThang");
+    document.getElementById("chuoithang").innerHTML = taoBang(data);
+})();
+
+
+// Lịch thi đấu
+
+(async () => {
+    try {
+        const data = await api("LichNgoaiHangAnh");
+        document.getElementById("lichEPL").innerHTML = taoBang(data);
+    } catch (err) {
+        console.log(err);
+        alert(err);
+    }
+})();
+
+break;
+
+
+
+case "c1":
+
+content.innerHTML = `
+<h1>🏅 CHAMPIONS LEAGUE</h1>
+<p>Giải C1 Clan Đại Việt</p>
+`;
+
+break;
+
+
+
+case "5vs5":
+
+content.innerHTML = `
+<h1>⚔️ GIẢI 5 VS 5</h1>
+<p>Thi đấu đồng đội</p>
+`;
+
+break;
+
+case "3vs3":
+
+content.innerHTML = `
+<h1>🏆 GIẢI ĐẤU 3 VS 3</h1>
+
+<p>CLAN ĐẠI VIỆT - RANK ESPORT</p>
+<div style="text-align:center;margin:25px 0;">
+
+<button onclick="bocTham3vs3()"
+style="
+padding:15px 40px;
+font-size:20px;
+font-weight:bold;
+background:linear-gradient(#FFD700,#FF9900);
+border:none;
+border-radius:12px;
+cursor:pointer;
+box-shadow:0 0 15px gold;
+">
+
+🎲 BỐC THĂM CHIA BẢNG
+
+</button>
+
+</div>
+
+<div id="ketquaBocTham"></div>
+
+<hr>
+
+<h2>📅 BẢNG THI ĐẤU</h2>
+<div id="lich3vs3">⏳ Đang tải...</div>
+
+<hr>
+
+<h2>🏆 BẢNG A</h2>
+<div id="bangA">⏳ Đang tải...</div>
+
+<hr>
+
+<h2>🏆 BẢNG B</h2>
+<div id="bangB">⏳ Đang tải...</div>
+
+<hr>
+
+<h2>🏆 BẢNG C</h2>
+<div id="bangC">⏳ Đang tải...</div>
+
+<hr>
+
+<h2>🏆 BẢNG D</h2>
+<div id="bangD">⏳ Đang tải...</div>
+
+<h2>⭐ ĐỘI CÓ NHIỀU LƯỢT 3 SAO NHẤT</h2>
+<div id="topteam3">⏳ Đang tải...</div>
+
+<hr>
+
+<h2>💥 ĐỘI CÓ TỔNG SAO VÀ % PHÁ HỦY CAO NHẤT</h2>
+<div id="toptrandau">⏳ Đang tải...</div>
+
+<hr>
+
+<h2>🔥 CÁ NHÂN CÓ NHIỀU LƯỢT 3 SAO NHẤT</h2>
+<div id="topcanhan">⏳ Đang tải...</div>
+
+<hr>
+
+<h2>🛡 CÁ NHÂN PHÒNG THỦ 1 SAO NHIỀU NHẤT</h2>
+<div id="topthu1sao">⏳ Đang tải...</div>
+<hr>
+
+<h2>🏆 ĐỘI GIÀNH QUYỀN VÀO TỨ KẾT</h2>
+
+<div id="top8">
+⏳ Đang tải...
+</div>
+`;
+
+(async () => {
+    const data = await api("3vs3LichThiDau");
+    document.getElementById("lich3vs3").innerHTML = taoBang(data);
+})();
+
+(async () => {
+    const data = await api("3vs3BangA");
+    document.getElementById("bangA").innerHTML = taoBang(data);
+})();
+
+(async () => {
+    const data = await api("3vs3BangB");
+    document.getElementById("bangB").innerHTML = taoBang(data);
+})();
+
+(async () => {
+    const data = await api("3vs3BangC");
+    document.getElementById("bangC").innerHTML = taoBang(data);
+})();
+
+(async () => {
+    const data = await api("3vs3BangD");
+    document.getElementById("bangD").innerHTML = taoBang(data);
+})();
+
+(async () => {
+    const data = await api("3vs3TopTeam3Sao");
+    document.getElementById("topteam3").innerHTML = taoBang(data);
+})();
+
+(async () => {
+    const data = await api("3vs3TopTranDau");
+    document.getElementById("toptrandau").innerHTML = taoBang(data);
+})();
+
+(async () => {
+    const data = await api("3vs3TopCaNhan");
+    document.getElementById("topcanhan").innerHTML = taoBang(data);
+})();
+
+(async () => {
+    const data = await api("3vs3TopThu1Sao");
+    document.getElementById("topthu1sao").innerHTML = taoBang(data);
+})();
+(async () => {
+    const data = await api("3vs3Top8");
+    document.getElementById("top8").innerHTML = taoBang(data);
+})();
+break;
+
+
+case "reward":
+
+google.script.run
+.withSuccessHandler(function(html){
+
+content.innerHTML = html;
+
+})
+.getReward();
+
+break;
+
+
+case "legend":
+
+content.innerHTML = `
+
+<h1>🥇 HUYỀN THOẠI 1</h1>
+
+<p>
+CLAN ĐẠI VIỆT - GIẢI ĐẤU HÀNG THÁNG
+</p>
+
+
+<hr>
+
+
+<h2>📊 BẢNG XẾP HẠNG</h2>
+
+<div id="ht1bxh">
+⏳ Đang tải...
+</div>
+
+
+<hr>
+
+
+<h2>⭐ TOP LIA 3 SAO</h2>
+
+<div id="ht1top3">
+⏳ Đang tải...
+</div>
+
+
+<hr>
+
+
+<h2>🛡️ TOP THỦ 1 SAO</h2>
+
+<div id="ht1topthu">
+⏳ Đang tải...
+</div>
+
+
+<hr>
+
+
+<h2>🔥 CHUỖI THẮNG LIÊN TIẾP</h2>
+
+<div id="ht1chuoi">
+⏳ Đang tải...
+</div>
+
+<hr>
+
+<h2>📅 LỊCH THI ĐẤU & KẾT QUẢ</h2>
+
+<div id="lichHT1">
+⏳ Đang tải...
+</div>
+
+
+`;
+
+
+
+// bảng xếp hạng
+
+(async () => {
+    const data = await api("HuyenThoai1");
+    document.getElementById("ht1bxh").innerHTML =
+        taoBang(data);
+})();
+
+
+
+// top lia 3 sao
+
+(async () => {
+    const data = await api("HuyenThoai1Top3Sao");
+    document.getElementById("ht1top3").innerHTML =
+        taoBang(data);
+})();
+
+
+
+// top thủ 1 sao
+
+(async () => {
+    const data = await api("HuyenThoai1TopThu1Sao");
+    document.getElementById("ht1topthu").innerHTML =
+        taoBang(data);
+})();
+
+
+
+// chuỗi thắng
+
+(async () => {
+    const data = await api("HuyenThoai1ChuoiThang");
+    document.getElementById("ht1chuoi").innerHTML =
+        taoBang(data);
+})();
+
+
+// Lịch thi đấu Huyền Thoại 1
+
+(async () => {
+    try {
+        const data = await api("LichHuyenThoai1");
+        document.getElementById("lichHT1").innerHTML =
+            taoBang(data);
+    } catch (err) {
+        alert(err);
+    }
+})();
+
+break;
+
+
+
+case "esport":
+
+content.innerHTML = `
+<h1>🎮 ESPORT</h1>
+<p>Giải đấu cấp cao Clan Đại Việt</p>
+`;
+
+break;
+
+
+
+case "hall":
+
+content.innerHTML = `
+<h1>👑 HALL OF FAME</h1>
+<p>Vinh danh huyền thoại</p>
+`;
+
+break;
+
+
+}
+}
+function taoBang(data){
+
+  if (!data || data.length == 0){
+    return `
+      <div style="
+      text-align:center;
+      padding:30px;
+      color:#ffcc00;
+      font-size:22px;">
+      Không có dữ liệu
+      </div>`;
+  }
+
+  let html = `
+  <div style="overflow-x:auto">
+
+  <table style="
+  width:max-content;
+  border-collapse:collapse;
+  font-size:16px;
+  text-align:center;
+  background:#111;
+  color:white;
+  min-width:1200px;
+">
+
+  <thead>
+
+  <tr style="
+  background:linear-gradient(90deg,#b30000,#ff0000);
+  color:#fff;
+  position:sticky;
+  top:0;
+  z-index:10;
+  ">`;
+
+  // Tiêu đề
+  data[0].forEach(function(cell){
+
+    html += `
+    <th style="
+    border:1px solid #555;
+    padding:12px;
+    white-space:nowrap;
+    ">
+    ${cell}
+    </th>`;
+
+  });
+
+  html += "</tr></thead><tbody>";
+
+  // Dữ liệu
+  for(let r=1;r<data.length;r++){
+
+    let mau = (r%2==0) ? "#1b1b1b" : "#111";
+
+    // Tô màu Top 1 và Top 2
+    if(data[r][0]=="1" || data[r][0]=="🥇"){
+        mau="#006400";      // Xanh lá
+    }
+
+    else if(data[r][0]=="2" || data[r][0]=="🥈"){
+        mau="#8B8000";      // Vàng
+    }
+
+    html += `<tr style="background:${mau};">`;
+
+    data[r].forEach(function(cell){
+
+      html += `
+      <td style="
+      border:1px solid #444;
+      padding:10px;
+      white-space:nowrap;
+      ">
+      ${cell==null?"":cell}
+      </td>`;
+
+    });
+
+    html += "</tr>";
+  }
+
+  html += `
+  </tbody>
+  </table>
+  </div>`;
+
+  return html;
+
+}
+function taoBangThanhVien(data){
+
+  if (!data || data.length == 0){
+    return `
+    <div style="
+    text-align:center;
+    padding:30px;
+    color:#ffcc00;
+    font-size:22px;">
+    Không có dữ liệu
+    </div>`;
+  }
+
+  let html=`
+  <div style="overflow-x:auto">
+
+  <table style="
+  width:100%;
+  border-collapse:collapse;
+  background:#111;
+  color:white;
+  font-size:15px;
+  min-width:1800px;
+  ">
+
+  <thead>
+
+  <tr style="
+  background:linear-gradient(90deg,#b30000,#ff0000);
+  color:white;
+  position:sticky;
+  top:0;
+  z-index:10;
+  ">`;
+
+  data[0].forEach(function(cell){
+
+    html+=`
+    <th style="
+    padding:12px;
+    border:1px solid #555;
+    white-space:nowrap;
+    ">
+    ${cell}
+    </th>`;
+
+  });
+
+  html+="</tr></thead><tbody>";
+
+
+
+  for(let r=1;r<data.length;r++){
+
+    let mau=(r%2==0)?"#1a1a1a":"#111";
+
+    html+=`<tr style="background:${mau};">`;
+
+
+
+    data[r].forEach(function(cell,c){
+
+      let value=cell==null?"":cell;
+
+      // Rank hiện tại
+if(c==6){
+
+  if(value=="Esport")
+    value='<span style="background:linear-gradient(90deg,#8b0000,#ff0000);color:white;padding:6px 14px;border-radius:25px;font-weight:bold;box-shadow:0 0 12px red;">🎮 ESPORT</span>';
+
+  else if(value=="Huyền Thoại 1")
+    value='<span style="background:linear-gradient(90deg,#8b0000,#ff0000);color:#fff;padding:6px 14px;border-radius:25px;font-weight:bold;box-shadow:0 0 15px red;border:2px solid gold;">🔥 HUYỀN THOẠI 1</span>';
+
+  else if(value=="Huyền Thoại 2")
+    value='<span style="background:linear-gradient(90deg,#ff6600,#ff9900);color:white;padding:6px 14px;border-radius:25px;font-weight:bold;box-shadow:0 0 15px orange;border:2px solid gold;">🟠 HUYỀN THOẠI 2</span>';
+
+  else if(value=="Huyền Thoại 3")
+    value='<span style="background:linear-gradient(90deg,#ffd700,#fff176);color:black;padding:6px 14px;border-radius:25px;font-weight:bold;box-shadow:0 0 15px gold;border:2px solid #ff9900;">🟡 HUYỀN THOẠI 3</span>';
+
+  else if(value=="Titan")
+    value='<span style="background:linear-gradient(90deg,#5a00b5,#9b59ff);color:white;padding:6px 14px;border-radius:25px;font-weight:bold;box-shadow:0 0 15px #9b59ff;">🟪 TITAN</span>';
+
+  else if(value=="Champion")
+    value='<span style="background:linear-gradient(90deg,#008c3a,#00cc66);color:white;padding:6px 14px;border-radius:25px;font-weight:bold;box-shadow:0 0 15px #00ff66;">🟩 CHAMPION</span>';
+
+}
+
+      // War7D
+      if(c==10){
+
+  if(value=="✅")
+    value='<span style="background:#0b8f2f;color:white;padding:5px 10px;border-radius:20px;">🟢 ĐĂNG KÝ</span>';
+
+  else if(value=="⏳")
+    value='<span style="background:#ff9900;color:black;padding:5px 10px;border-radius:20px;">⏳ CHỜ CẬP NHẬT</span>';
+
+  else
+    value='<span style="background:#b30000;color:white;padding:5px 10px;border-radius:20px;">🔴 KHÔNG</span>';
+
+}
+
+      // War thường
+      if(c==11){
+
+  if(value=="✅")
+    value='<span style="background:#0b8f2f;color:white;padding:5px 10px;border-radius:20px;">🟢 THAM GIA</span>';
+
+  else if(value=="⏳")
+    value='<span style="background:#ff9900;color:black;padding:5px 10px;border-radius:20px;">⏳ CHỜ CẬP NHẬT</span>';
+
+  else
+    value='<span style="background:#b30000;color:white;padding:5px 10px;border-radius:20px;">🔴 VẮNG</span>';
+
+}
+
+      // Kết quả
+if(c==14){
+
+  if(value=="ĐẠT")
+    value='<span style="background:#009933;color:white;padding:5px 10px;border-radius:20px;">🟢 ĐẠT</span>';
+
+  else if(value=="THEO DÕI")
+    value='<span style="background:#ffcc00;color:black;padding:5px 10px;border-radius:20px;">🟡 THEO DÕI</span>';
+
+  else if(value=="⏳")
+    value='<span style="background:#ff9900;color:black;padding:5px 10px;border-radius:20px;">⏳ CHỜ CẬP NHẬT</span>';
+
+  else if(value=="LOẠI")
+    value='<span style="background:#b30000;color:white;padding:5px 10px;border-radius:20px;">🔴 LOẠI</span>';
+
+}
+
+      // Chức vụ
+      if(c==15){
+
+        if(value=="Leader")
+        value='<span style="background:#b30000;color:gold;padding:5px 12px;border-radius:20px;font-weight:bold;">👑 LEADER</span>';
+
+        else if(value=="Co-Leader")
+        value='<span style="background:#6a0dad;color:white;padding:5px 12px;border-radius:20px;font-weight:bold;">⭐ CO-LEADER</span>';
+else if(value=="Huynh Trưởng")
+  value='<span style="background:linear-gradient(90deg,#ff6a00,#ffd700);color:#000;padding:5px 12px;border-radius:20px;font-weight:bold;box-shadow:0 0 8px gold;">⚜️ HUYNH TRƯỞNG</span>';
+        else if(value=="Elder")
+        value='<span style="background:#0066cc;color:white;padding:5px 12px;border-radius:20px;font-weight:bold;">🛡 ELDER</span>';
+
+        else
+        value='<span style="background:#666;color:white;padding:5px 12px;border-radius:20px;font-weight:bold;">⚔ MEMBER</span>';
+
+      }
+
+      html+=`
+      <td style="
+      padding:10px;
+      border:1px solid #444;
+      white-space:nowrap;
+      ">
+      ${value}
+      </td>`;
+
+    });
+
+    html+="</tr>";
+
+  }
+
+  html+=`
+  </tbody>
+  </table>
+  </div>`;
+
+  return html;
+
+}
+async function bocTham3vs3() {
+    try {
+        const data = await api("BocTham3vs3");
+        document.getElementById("ketquaBocTham").innerHTML = taoBang(data);
+    } catch (err) {
+        alert(err);
+    }
+}
+function hienLuat3vs3(){
+
+document.getElementById("luat3vs3").innerHTML = `
+
+<div style="
+background:#111;
+color:white;
+padding:20px;
+border-radius:15px;
+margin-top:15px;
+line-height:1.7;
+">
+
+<h2 style="
+color:gold;
+text-align:center;
+">
+🏆 LUẬT THI ĐẤU 3VS3 ESPORT
+</h2>
+
+<hr>
+
+<h3>1️⃣ VÒNG BẢNG</h3>
+
+<p>
+🎮 Đánh theo thời gian, chuẩn bị 5 phút thi đấu 15 phút
+<br>
+(1 trận 3vs3 chế độ thể thao điện tử)
+
+<br><br>
+
+⏱ Time A: 10 - 5 - 1
+<br>
+⏱ Time B: 10 - 5 - 1
+
+<br><br>
+
+👉 Sai lệch thời gian: +/− 30s
+
+<br><br>
+
+💚 Tính điểm:
+
+<br>
+⭐ Tính Sao
+<br>
+💥 Tính % Phá Huỷ
+<br>
+⏱ Tính Thời Gian
+
+<br><br>
+
+➡️ ĐIỂM hơn % = WIN
+
+</p>
+
+
+<hr>
+
+
+<h3>🔊 VÒNG BẢNG TÍNH ĐIỂM</h3>
+
+<p>
+
+🏆 Thắng: 3Đ
+<br>
+( Tính ⭐ + % Phá Huỷ )
+
+<br><br>
+
+🤝 Hoà: 1Đ
+<br>
+( Hoà ⭐ + Hoà % Phá Huỷ )
+
+<br><br>
+
+❌ Thua: 0Đ
+
+</p>
+
+
+<hr>
+
+
+<h3>2️⃣ VÒNG CHIA NHÁNH TRÊN - NHÁNH DƯỚI</h3>
+
+
+<h4>🔥 BO2: Lượt đi & Lượt về</h4>
+
+<p>
+
+🎮 Thi đấu 2 trận
+
+<br><br>
+
+🔹 Lượt 1:
+
+<br>
+⏱ Time A: 25 - 15 - 5
+
+<br>
+⏱ Time B: 20 - 10 - 1
+
+
+<br><br>
+
+🔹 Lượt 2:
+
+<br>
+⏱ Time B: 25 - 15 - 5
+
+<br>
+⏱ Time A: 20 - 10 - 1
+
+
+<br><br>
+
+❤️ Kết quả 2 BO cộng lại
+
+<br><br>
+
+✔️ Hơn ⭐ = WIN
+
+<br>
+
+✅ Bằng ⭐ → hơn % Phá Huỷ = WIN
+
+</p>
+
+
+<hr>
+
+
+<h3>3️⃣ BÁN KẾT + CHUNG KẾT</h3>
+
+
+<h4>🔥 BO3: Thi đấu 3 trận</h4>
+
+<p>
+
+🔹 Lượt 1:
+
+<br>
+⏱ Time A: 25 - 15 - 5
+
+<br>
+⏱ Time B: 20 - 10 - 1
+
+
+<br><br>
+
+🔹 Lượt 2:
+
+<br>
+⏱ Time B: 25 - 15 - 5
+
+<br>
+⏱ Time A: 20 - 10 - 1
+
+
+<br><br>
+
+❤️ Tính WIN từng trận
+
+<br>
+( Chạm 2 = WIN )
+
+
+<br><br>
+
+✔️ Hơn ⭐ = WIN
+
+<br>
+
+✅ Bằng ⭐ → hơn % Phá Huỷ = WIN
+
+</p>
+
+
+<hr>
+
+
+<h3>⚠️ LƯU Ý</h3>
+
+<p>
+
+❌ Sai thời gian: -1 ⭐
+
+<br><br>
+
+❌ Không công nhận kết quả ngoài hệ thống.
+
+<br><br>
+
+✅ Lấy kết quả cuối cùng từ hệ thống Clash of Clans
+
+<br><br>
+
+✅ Team A luôn là Team thách đấu
+
+<br>
+
+(Trừ khi 2 đội có sự thoả thuận với nhau)
+
+</p>
+
+
+</div>
+
+`;
+
+}
