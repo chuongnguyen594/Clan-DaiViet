@@ -1221,11 +1221,16 @@ async function capNhatTienDoDangKy(){
     document.getElementById("progressFill").style.width =
     (soDoi / 16 * 100) + "%";
 
-    if(soDoi >= 16){
+    if (soDoi >= 16) {
 
-        document.getElementById("btnDangKy").disabled = true;
+    const btn = document.getElementById("btnDangKy");
 
-        document.getElementById("btnDangKy").innerHTML =
-        "🔒 ĐÃ ĐỦ 16 ĐỘI";
-    }
+    btn.disabled = true;
+
+    btn.innerHTML = "🔒 ĐÃ ĐỦ 16 ĐỘI";
+
+btn.style.background = "#777"
+    btn.style.cursor = "not-allowed";
+
+}
 }
