@@ -1162,9 +1162,15 @@ ds.slice(12,16).map((x,i)=>
 
 
 }
-function moDangKy(){
+async function moDangKy(){
 
-document.getElementById("popupDangKy").style.display="block";
+    await capNhatTienDoDangKy();
+
+    if(document.getElementById("btnDangKy").disabled){
+        return;
+    }
+
+    document.getElementById("popupDangKy").style.display="block";
 
 }
 
@@ -1229,8 +1235,22 @@ async function capNhatTienDoDangKy(){
 
     btn.innerHTML = "🔒 ĐÃ ĐỦ 16 ĐỘI";
 
-btn.style.background = "#777"
+    btn.style.background = "#777";
+
     btn.style.cursor = "not-allowed";
 
+}else{
+
+    const btn = document.getElementById("btnDangKy");
+
+    btn.disabled = false;
+
+    btn.innerHTML = "🟢 ĐĂNG KÝ GIẢI";
+
+    btn.style.background = "#16a34a";
+
+    btn.style.cursor = "pointer";
+
 }
+
 }
