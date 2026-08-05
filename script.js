@@ -276,6 +276,41 @@ box-shadow:0 0 15px gold;
 🎲 BỐC THĂM CHIA BẢNG
 
 </button>
+<hr>
+
+<h2 style="text-align:center;color:#FFD700;">
+👥 DANH SÁCH 16 ĐỘI
+</h2>
+
+<div class="bang16">
+
+<div class="bangbox">
+<h3>🅰️ BẢNG A</h3>
+<div id="bangAteam">
+⏳ Đang chờ bốc thăm...
+</div>
+</div>
+
+<div class="bangbox">
+<h3>🅱️ BẢNG B</h3>
+<div id="bangBteam">
+⏳ Đang chờ bốc thăm...
+</div>
+</div>
+
+<div class="bangbox">
+<h3>🅲️ BẢNG C</h3>
+<div id="bangCteam">
+⏳ Đang chờ bốc thăm...
+</div>
+</div>
+
+<div class="bangbox">
+<h3>🅳️ BẢNG D</h3>
+<div id="bangDteam">
+⏳ Đang chờ bốc thăm...
+</div>
+</div>
 
 </div>
 
