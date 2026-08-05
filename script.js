@@ -1057,3 +1057,57 @@ text-align:center;
 `;
 
 }
+//========================
+// BỐC THĂM 3VS3
+//========================
+
+const ds16Doi = [
+
+"Team 01",
+"Team 02",
+"Team 03",
+"Team 04",
+
+"Team 05",
+"Team 06",
+"Team 07",
+"Team 08",
+
+"Team 09",
+"Team 10",
+"Team 11",
+"Team 12",
+
+"Team 13",
+"Team 14",
+"Team 15",
+"Team 16"
+
+];
+
+function bocTham3vs3(){
+
+let ds=[...ds16Doi];
+
+// Random
+for(let i=ds.length-1;i>0;i--){
+
+let j=Math.floor(Math.random()*(i+1));
+
+[ds[i],ds[j]]=[ds[j],ds[i]];
+
+}
+
+document.getElementById("bangAteam").innerHTML=
+ds.slice(0,4).join("<br>");
+
+document.getElementById("bangBteam").innerHTML=
+ds.slice(4,8).join("<br>");
+
+document.getElementById("bangCteam").innerHTML=
+ds.slice(8,12).join("<br>");
+
+document.getElementById("bangDteam").innerHTML=
+ds.slice(12,16).join("<br>");
+
+}
