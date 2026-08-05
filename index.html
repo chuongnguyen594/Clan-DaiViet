@@ -31,7 +31,7 @@
 
 <div class="title">
 
-🔥 HỆ THỐNG GIẢI ĐẤU ESPORT 🔥
+🔥 HỆ THỐNG GIẢI ĐẤU ESPORT 🔥 TEST
 
 </div>
 
@@ -249,17 +249,14 @@ XEM
 
 
 
+<script src="script.js"></script>
+
 <script>
-
-
 (async () => {
     const data = await api("TrangChu");
     document.querySelector(".header").innerHTML =
         "🏆 " + data[0][1].replace(/\n/g, "<br>");
 })();
-
-
-
 
 (async () => {
     const ds = await api("DanhSachGiai");
@@ -272,9 +269,6 @@ XEM
         }
     }
 })();
-
-
-
 </script>
 
 
@@ -293,7 +287,7 @@ cursor:pointer;">
 <div id="luat3vs3"></div>
 
 
-<script src="script.js"></script>
+
 
 
 </body>

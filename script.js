@@ -156,11 +156,111 @@ break;
 case "3vs3":
 
 content.innerHTML = `
-<h1>🏆 GIẢI ĐẤU 3 VS 3</h1>
+<h1 style="
+text-align:center;
+font-size:38px;
+color:#FFD700;
+text-shadow:0 0 12px gold;
+margin-bottom:10px;
+">
+🏆 GIẢI ĐẤU 3 VS 3
+</h1>
 
-<p>CLAN ĐẠI VIỆT - RANK ESPORT</p>
-<div style="text-align:center;margin:25px 0;">
+<p style="
+text-align:center;
+font-size:18px;
+color:#FFD700;
+font-weight:bold;
+margin-bottom:25px;
+">
+⚔️ CLAN ĐẠI VIỆT • RANK ESPORT
+</p>
 
+<!-- THÔNG BÁO GIẢI ĐẤU -->
+
+<div style="
+background:linear-gradient(180deg,#202938,#161d27);
+border:2px solid #FFD700;
+border-radius:18px;
+padding:25px;
+margin:25px 0;
+box-shadow:0 0 20px rgba(255,215,0,.25);
+">
+
+<h2 style="color:gold;text-align:center;">
+📢 THÔNG BÁO GIẢI ĐẤU
+</h2>
+
+<div style="
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+gap:15px;
+margin-top:20px;
+">
+
+<div style="background:#2d3748;padding:15px;border-radius:10px;text-align:center;">
+<h3>📝 Đăng ký</h3>
+<p>10/08/2026 → 15/08/2026</p>
+</div>
+
+<div style="background:#2d3748;padding:15px;border-radius:10px;text-align:center;">
+<h3>🎲 Bốc thăm</h3>
+<p>16/08/2026 - 20:00</p>
+</div>
+
+<div style="background:#2d3748;padding:15px;border-radius:10px;text-align:center;">
+<h3>⚔️ Khai mạc</h3>
+<p>17/08/2026</p>
+</div>
+
+<div style="background:#2d3748;padding:15px;border-radius:10px;text-align:center;">
+<h3>🏆 Chung kết</h3>
+<p>.............</p>
+</div>
+
+</div>
+
+<div style="text-align:center;margin-top:25px;">
+
+<button
+onclick="alert('Chức năng đăng ký sẽ mở ngày 10/08/2026')"
+style="
+background:#16a34a;
+color:white;
+padding:15px 35px;
+font-size:18px;
+font-weight:bold;
+border:none;
+border-radius:10px;
+cursor:pointer;
+margin-right:15px;
+">
+
+🟢 ĐĂNG KÝ GIẢI
+
+</button>
+
+
+<button
+onclick="hienLuat3vs3()"
+style="
+background:#b8860b;
+color:white;
+padding:15px 35px;
+font-size:18px;
+font-weight:bold;
+border:none;
+border-radius:10px;
+cursor:pointer;
+">
+
+📜 ĐIỀU LỆ
+
+</button>
+
+</div>
+
+</div>
 <button onclick="bocTham3vs3()"
 style="
 padding:15px 40px;
