@@ -1109,5 +1109,46 @@ ds.slice(8,12).join("<br>");
 
 document.getElementById("bangDteam").innerHTML=
 ds.slice(12,16).join("<br>");
+taoLich3vs3(ds);
+}
+function taoLich3vs3(ds){
+
+let html="";
+
+const bang=[
+["A",ds.slice(0,4)],
+["B",ds.slice(4,8)],
+["C",ds.slice(8,12)],
+["D",ds.slice(12,16)]
+];
+
+bang.forEach(function(b){
+
+let ten=b[0];
+let t=b[1];
+
+html+=`
+<h2 style="color:#FFD700">🏆 BẢNG ${ten}</h2>
+
+<table class="table">
+
+<tr>
+<th>STT</th>
+<th>Đội A</th>
+<th>Đội B</th>
+</tr>
+
+<tr><td>1</td><td>${t[0]}</td><td>${t[1]}</td></tr>
+<tr><td>2</td><td>${t[2]}</td><td>${t[3]}</td></tr>
+<tr><td>3</td><td>${t[0]}</td><td>${t[2]}</td></tr>
+<tr><td>4</td><td>${t[1]}</td><td>${t[3]}</td></tr>
+<tr><td>5</td><td>${t[0]}</td><td>${t[3]}</td></tr>
+<tr><td>6</td><td>${t[1]}</td><td>${t[2]}</td></tr>
+
+</table><br>`;
+
+});
+
+document.getElementById("lich3vs3").innerHTML=html;
 
 }
