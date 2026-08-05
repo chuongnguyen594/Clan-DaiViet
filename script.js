@@ -220,6 +220,20 @@ margin-top:20px;
 
 </div>
 
+<div class="register-progress">
+
+<h3>📋 TIẾN ĐỘ ĐĂNG KÝ</h3>
+
+<div class="progress-bar">
+    <div class="progress-fill" id="progressFill"></div>
+</div>
+
+<div id="progressText">0 / 16 đội</div>
+
+</div>
+
+
+
 <div style="text-align:center;margin-top:25px;">
 
 <button
