@@ -1164,14 +1164,17 @@ ds.slice(12,16).map((x,i)=>
 }
 async function moDangKy(){
 
-    await capNhatTienDoDangKy();
+    try{
+        await capNhatTienDoDangKy();
+    }catch(e){
+        console.log(e);
+    }
 
     if(document.getElementById("btnDangKy").disabled){
         return;
     }
 
     document.getElementById("popupDangKy").style.display="block";
-
 }
 
 function dongDangKy(){
