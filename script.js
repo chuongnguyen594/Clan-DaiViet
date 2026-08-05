@@ -297,6 +297,11 @@ box-shadow:0 0 15px gold;
 👥 DANH SÁCH 16 ĐỘI
 </h2>
 
+<div id="danhSach16Doi" class="team-list">
+
+</div>
+
+<br>
 <div class="bang16">
 
 <div class="bangbox">
@@ -1265,6 +1270,11 @@ async function capNhatDanhSach16Doi(){
     const res = await fetch(url);
     const data = await res.json();
 
-    console.log(data);
+    document.getElementById("danhSach16Doi").innerHTML =
+data.map((x,i)=>`
+<div class="team-item">
+${i+1}. ${x[0]}
+</div>
+`).join("");
 }
 capNhatDanhSach16Doi();

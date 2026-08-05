@@ -581,3 +581,20 @@ font-size:30px;
 cursor:pointer;
 color:white;
 }
+
+.team-list{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+    margin:20px 0;
+}
+
+.team-item{
+    background:#293447;
+    color:#fff;
+    border:2px solid gold;
+    border-radius:10px;
+    padding:12px;
+    text-align:center;
+    font-weight:bold;
+}
