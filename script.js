@@ -237,6 +237,7 @@ margin-top:20px;
 <div style="text-align:center;margin-top:25px;">
 
 <button
+id="btnDangKy"
 onclick="moDangKy()"
 style="
 background:#16a34a;
@@ -455,6 +456,7 @@ box-shadow:0 0 15px gold;
     const data = await api("3vs3Top8");
     document.getElementById("top8").innerHTML = taoBang(data);
 })();
+setTimeout(capNhatTienDoDangKy, 100);
 break;
 
 
@@ -1198,7 +1200,32 @@ async function dangKyTeam(){
   if(data.status=="success"){
     alert("✅ Đăng ký thành công!");
     dongDangKy();
+    capNhatTienDoDangKy();
   }else{
     alert("❌ Đăng ký thất bại!");
   }
+}
+async function capNhatTienDoDangKy(){
+
+    const url =
+    "https://script.google.com/macros/s/AKfycbyAphyLOxoD-EOBjKqm-akiDv2LLYL6od4VhbPwM2r1m7FnbLhibIOanO0bRRh2m1zs2w/exec?action=DemTeam3vs3";
+
+    const res = await fetch(url);
+    const data = await res.json();
+
+    const soDoi = data.team;
+
+    document.getElementById("progressText").innerHTML =
+    soDoi + " / 16 đội";
+
+    document.getElementById("progressFill").style.width =
+    (soDoi / 16 * 100) + "%";
+
+    if(soDoi >= 16){
+
+        document.getElementById("btnDangKy").disabled = true;
+
+        document.getElementById("btnDangKy").innerHTML =
+        "🔒 ĐÃ ĐỦ 16 ĐỘI";
+    }
 }
