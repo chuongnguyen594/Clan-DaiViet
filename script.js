@@ -1171,3 +1171,34 @@ function dongDangKy(){
 document.getElementById("popupDangKy").style.display="none";
 
 }
+
+async function dangKyTeam(){
+
+  const team = document.getElementById("teamName").value.trim();
+  const captain = document.getElementById("captain").value.trim();
+  const tv2 = document.getElementById("tv2").value.trim();
+  const tv3 = document.getElementById("tv3").value.trim();
+
+  if(!team || !captain || !tv2 || !tv3){
+    alert("Vui lòng nhập đầy đủ thông tin!");
+    return;
+  }
+
+  const url =
+  "https://script.google.com/macros/s/AKfycbyAphyLOxoD-EOBjKqm-akiDv2LLYL6od4VhbPwM2r1m7FnbLhibIOanO0bRRh2m1zs2w/exec"
+  + "?action=DangKy3vs3"
+  + "&team=" + encodeURIComponent(team)
+  + "&captain=" + encodeURIComponent(captain)
+  + "&tv2=" + encodeURIComponent(tv2)
+  + "&tv3=" + encodeURIComponent(tv3);
+
+  const res = await fetch(url);
+  const data = await res.json();
+
+  if(data.status=="success"){
+    alert("✅ Đăng ký thành công!");
+    dongDangKy();
+  }else{
+    alert("❌ Đăng ký thất bại!");
+  }
+}
