@@ -473,8 +473,10 @@ google.script.run
 content.innerHTML = html;
 
 })
-.getReward();
 
+.getReward();
+capNhatTienDoDangKy();
+capNhatDanhSach16Doi();
 break;
 
 
@@ -1264,17 +1266,13 @@ async function capNhatTienDoDangKy(){
 }
 async function capNhatDanhSach16Doi(){
 
-    const url =
-    "https://script.google.com/macros/s/AKfycbyAphyLOxoD-EOBjKqm-akiDv2LLYL6od4VhbPwM2r1m7FnbLhibIOanO0bRRh2m1zs2w/exec?action=DanhSachTeam3vs3";
-
-    const res = await fetch(url);
-    const data = await res.json();
+    const data = await api("DanhSachTeam3vs3");
 
     document.getElementById("danhSach16Doi").innerHTML =
-data.map((x,i)=>`
-<div class="team-item">
-${i+1}. ${x[0]}
-</div>
-`).join("");
+    data.map((x,i)=>`
+        <div class="team-item">
+            ${i+1}. ${x[0]}
+        </div>
+    `).join("");
+
 }
-capNhatDanhSach16Doi();
