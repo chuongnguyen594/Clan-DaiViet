@@ -1257,3 +1257,14 @@ async function capNhatTienDoDangKy(){
 }
 
 }
+async function capNhatDanhSach16Doi(){
+
+    const url =
+    "https://script.google.com/macros/s/AKfycbyAphyLOxoD-EOBjKqm-akiDv2LLYL6od4VhbPwM2r1m7FnbLhibIOanO0bRRh2m1zs2w/exec?action=DanhSachTeam3vs3";
+
+    const res = await fetch(url);
+    const data = await res.json();
+
+    console.log(data);
+}
+capNhatDanhSach16Doi();
