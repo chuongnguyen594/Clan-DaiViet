@@ -237,7 +237,7 @@ margin-top:20px;
 <div style="text-align:center;margin-top:25px;">
 
 <button
-onclick="alert('Chức năng đăng ký sẽ mở ngày 10/08/2026')"
+onclick="moDangKy()"
 style="
 background:#16a34a;
 color:white;
@@ -1160,4 +1160,14 @@ ds.slice(12,16).map((x,i)=>
 
 
 }
+function moDangKy(){
 
+document.getElementById("popupDangKy").style.display="block";
+
+}
+
+function dongDangKy(){
+
+document.getElementById("popupDangKy").style.display="none";
+
+}
