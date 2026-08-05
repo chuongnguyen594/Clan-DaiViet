@@ -286,30 +286,56 @@ box-shadow:0 0 15px gold;
 
 <div class="bangbox">
 <h3>🅰️ BẢNG A</h3>
+
 <div id="bangAteam">
-⏳ Đang chờ bốc thăm...
+
+<div class="slot">① Chưa xác định</div>
+<div class="slot">② Chưa xác định</div>
+<div class="slot">③ Chưa xác định</div>
+<div class="slot">④ Chưa xác định</div>
+
 </div>
+
 </div>
 
 <div class="bangbox">
 <h3>🅱️ BẢNG B</h3>
+
 <div id="bangBteam">
-⏳ Đang chờ bốc thăm...
+
+<div class="slot">① Chưa xác định</div>
+<div class="slot">② Chưa xác định</div>
+<div class="slot">③ Chưa xác định</div>
+<div class="slot">④ Chưa xác định</div>
+
 </div>
+
 </div>
 
 <div class="bangbox">
 <h3>🅲️ BẢNG C</h3>
 <div id="bangCteam">
-⏳ Đang chờ bốc thăm...
+
+<div class="slot">① Chưa xác định</div>
+<div class="slot">② Chưa xác định</div>
+<div class="slot">③ Chưa xác định</div>
+<div class="slot">④ Chưa xác định</div>
+
 </div>
+
 </div>
 
 <div class="bangbox">
 <h3>🅳️ BẢNG D</h3>
 <div id="bangDteam">
-⏳ Đang chờ bốc thăm...
+
+<div class="slot">① Chưa xác định</div>
+<div class="slot">② Chưa xác định</div>
+<div class="slot">③ Chưa xác định</div>
+<div class="slot">④ Chưa xác định</div>
+
 </div>
+
 </div>
 
 </div>
