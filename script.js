@@ -596,7 +596,89 @@ CLAN ĐẠI VIỆT - GIẢI ĐẤU HÀNG THÁNG
 
 break;
 
+case "media":
 
+content.innerHTML = `
+<h1>🎬 MEDIA CENTER</h1>
+
+<p>CLAN ĐẠI VIỆT - VIDEO THI ĐẤU</p>
+
+<hr>
+
+<h2>🔥 VIDEO MỚI NHẤT</h2>
+<div id="videoMoiNhat">Đang tải...</div>
+
+<hr>
+
+<h2>🎥 HIGHLIGHT</h2>
+<div id="highlight">Đang tải...</div>
+
+<hr>
+
+<h2>🏆 FULL MATCH</h2>
+<div id="fullmatch">Đang tải...</div>
+
+<hr>
+
+<h2>🏆 5vs5</h2>
+<div id="video5vs5">Đang tải...</div>
+
+<hr>
+
+<h2>👥 3vs3</h2>
+<div id="video3vs3">Đang tải...</div>
+
+<hr>
+
+<h2>👑 SOLO 1VS1</h2>
+<div id="videoSolo">Đang tải...</div>
+
+<hr>
+
+<h2>📺 LIVESTREAM</h2>
+<div id="livestream">Đang tải...</div>
+
+<hr>
+
+<h2>⭐ TOP 3⭐</h2>
+<div id="top3">Đang tải...</div>
+
+<hr>
+
+<h2>🛡 TOP PHÒNG THỦ</h2>
+<div id="topThu">Đang tải...</div>
+`;
+(async () => {
+
+document.getElementById("videoMoiNhat").innerHTML =
+taoMedia(await getMedia("Video mới nhất"));
+
+document.getElementById("highlight").innerHTML =
+taoMedia(await getMedia("Highlight"));
+
+document.getElementById("fullmatch").innerHTML =
+taoMedia(await getMedia("Full Match"));
+
+document.getElementById("video5vs5").innerHTML =
+taoMedia(await getMedia("5vs5"));
+
+document.getElementById("video3vs3").innerHTML =
+taoMedia(await getMedia("3vs3"));
+
+document.getElementById("videoSolo").innerHTML =
+taoMedia(await getMedia("Solo 1vs1"));
+
+document.getElementById("livestream").innerHTML =
+taoMedia(await getMedia("Livestream"));
+
+document.getElementById("top3").innerHTML =
+taoMedia(await getMedia("Top 3⭐"));
+
+document.getElementById("topThu").innerHTML =
+taoMedia(await getMedia("Top Phòng Thủ"));
+
+})();
+break;
 
 case "esport":
 
@@ -606,8 +688,6 @@ content.innerHTML = `
 `;
 
 break;
-
-
 
 case "hall":
 
@@ -711,6 +791,67 @@ function taoBang(data){
   </div>`;
 
   return html;
+
+}
+async function getMedia(type){
+
+    const data = await api("MediaCenter");
+
+    return data.filter(x => x.Loai == type);
+
+}
+function taoMedia(ds){
+
+    if(ds.length==0)
+        return "<p>Chưa có video.</p>";
+
+    let html="";
+
+    ds.forEach(v=>{
+
+        html += `
+        <div style="
+            background:#222;
+            border:1px solid gold;
+            border-radius:12px;
+            padding:15px;
+            margin:15px 0;">
+
+            <iframe
+                width="100%"
+                height="315"
+                src="https://www.youtube.com/embed/${layIDYoutube(v.LinkYouTube)}"
+                frameborder="0"
+                allowfullscreen>
+            </iframe>
+
+            <h3 style="color:gold;margin-top:10px;">
+                ${v.TieuDe}
+            </h3>
+
+            <p style="color:#ccc;">
+                ${v.MoTa}
+            </p>
+
+        </div>
+        `;
+
+    });
+
+    return html;
+
+}
+function layIDYoutube(url){
+
+    if(!url) return "";
+
+    if(url.includes("watch?v="))
+        return url.split("watch?v=")[1].split("&")[0];
+
+    if(url.includes("youtu.be/"))
+        return url.split("youtu.be/")[1];
+
+    return "";
 
 }
 function taoBangThanhVien(data){
