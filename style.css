@@ -663,7 +663,8 @@ TOP MENU
 
     
 .hero{
-    height:450px;
+    height:500px;
+    background:url("banner.jpg") center center/cover no-repeat;
 
     background-image:url("banner.jpg");
     background-color:rgba(0,0,0,.55);
