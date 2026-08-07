@@ -661,18 +661,11 @@ TOP MENU
 
 
 
-    
+
 .hero{
+    position:relative;
     height:430px;
-    background:url("banner.jpg") center center/cover no-repeat;
-
-    background-image:url("banner.jpg");
-    background-color:rgba(0,0,0,.55);
-    background-blend-mode:multiply;
-
-    background-size:cover;
-    background-position:center top;
-    background-repeat:no-repeat;
+    overflow:hidden;
 
     display:flex;
     justify-content:center;
@@ -680,10 +673,28 @@ TOP MENU
     text-align:center;
 }
 
+.hero-banner{
+    width:100%;
+    height:430px;
+    object-fit:cover;
+    object-position:center;
+    display:block;
+}
+
 .hero-overlay{
+    position:absolute;
+    inset:0;
 
     max-width:900px;
+    margin:auto;
 
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+
+    background:rgba(0,0,0,.35);
 }
 
 .hero h1{
@@ -760,10 +771,10 @@ TOP MENU
 @media (max-width:768px){
 
     .hero{
-        position:relative;
-        overflow:hidden;
-        border-radius:12px;   /* nếu thích bo góc */
-    }
+    position:relative;
+    height:260px;
+    overflow:hidden;
+}
 
     .hero-banner{
         width:100%;
@@ -774,17 +785,18 @@ TOP MENU
     }
 
     .hero-overlay{
-        position:absolute;
-        inset:0;
+    position:absolute;
+    inset:0;
 
-        display:flex;
-        flex-direction:column;
-        justify-content:center;
-        align-items:center;
-        text-align:center;
-        padding:20px;
-        background:rgba(0,0,0,.35);
-    }
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+
+    padding:20px;
+    background:rgba(0,0,0,.35);
+}
 
     .hero h1{
         font-size:32px;
