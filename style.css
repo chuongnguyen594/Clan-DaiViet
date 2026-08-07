@@ -76,7 +76,8 @@ border:1px solid #444;
 box-shadow:
 0 0 20px rgba(255,0,0,.3);
 
-transition:.3s;
+transition:all .35s ease;
+transform-style:preserve-3d;
 
 }
 
@@ -84,17 +85,24 @@ transition:.3s;
 
 .card:hover{
 
-transform:translateY(-10px) scale(1.05);
+    transform:
+        translateY(-12px)
+        scale(1.03)
+        rotateX(3deg);
 
-background:#8b0000;
+    background:linear-gradient(145deg,#3b0000,#1b1b1b);
 
-box-shadow:
-0 0 30px red;
+    border:1px solid gold;
 
-cursor:pointer;
+    box-shadow:
+        0 0 25px rgba(255,215,0,.35),
+        0 20px 50px rgba(0,0,0,.45);
 
+    cursor:pointer;
 }
-
+.card:active{
+    transform:scale(.98);
+}
 
 
 /* ICON */
@@ -646,4 +654,103 @@ TOP MENU
     color:#000;
     background:gold;
     box-shadow:0 0 15px gold;
+}
+/*==========================
+        HERO BANNER
+==========================*/
+
+
+
+    
+.hero{
+    height:500px;
+
+    background:
+        linear-gradient(
+            rgba(0,0,0,.45),
+            rgba(0,0,0,.75)
+        ),
+        url("banner.jpg");
+
+    background-size:cover;
+    background-position:center;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+}
+
+.hero-overlay{
+
+    max-width:900px;
+
+}
+
+.hero h1{
+
+    font-size:62px;
+
+    color:#fff;
+
+    margin:0;
+
+    text-shadow:
+        0 0 20px gold,
+        0 0 40px red;
+
+}
+
+.hero h2{
+
+    margin-top:15px;
+
+    color:gold;
+
+    font-size:42px;
+
+}
+
+.hero p{
+
+    margin-top:20px;
+
+    font-size:24px;
+
+    color:#ddd;
+
+}
+
+.hero-btn{
+
+    margin-top:35px;
+
+    padding:18px 45px;
+
+    border:none;
+
+    border-radius:10px;
+
+    font-size:20px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    color:#000;
+
+    background:gold;
+
+    transition:.3s;
+
+    box-shadow:0 0 20px gold;
+
+}
+
+.hero-btn:hover{
+
+    transform:scale(1.08);
+
+    box-shadow:0 0 35px gold;
+
 }
