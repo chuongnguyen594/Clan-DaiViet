@@ -753,3 +753,53 @@ TOP MENU
     box-shadow:0 0 35px gold;
 
 }
+/* ==========================
+   MOBILE
+========================== */
+
+@media (max-width:768px){
+
+    .hero{
+        position:relative;
+        overflow:hidden;
+        border-radius:12px;   /* nếu thích bo góc */
+    }
+
+    .hero-banner{
+        width:100%;
+        height:260px;
+        object-fit:cover;
+        object-position:center center;
+        display:block;
+    }
+
+    .hero-overlay{
+        position:absolute;
+        inset:0;
+
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        align-items:center;
+text-align:center;
+        padding:20px;
+        background:rgba(0,0,0,.35);
+    }
+
+    .hero h1{
+        font-size:32px;
+    }
+
+    .hero h2{
+        font-size:24px;
+    }
+
+    .hero p{
+        font-size:16px;
+    }
+
+    .hero-btn{
+        padding:14px 32px;
+        font-size:18px;
+    }
+}
