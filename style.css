@@ -663,17 +663,13 @@ TOP MENU
 
     
 .hero{
+
     height:500px;
 
-    background:
-        linear-gradient(
-            rgba(0,0,0,.45),
-            rgba(0,0,0,.75)
-        ),
-        url("banner.jpg");
-
+    background-image:url("banner.jpg");
     background-size:cover;
-    background-position:center;
+    background-position:center center;
+    background-repeat:no-repeat;
 
     display:flex;
     justify-content:center;
