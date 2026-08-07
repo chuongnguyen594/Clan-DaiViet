@@ -814,4 +814,8 @@ TOP MENU
         padding:14px 32px;
         font-size:18px;
     }
+    .logo span{
+    font-size:20px;
+    white-space:nowrap;
+}
 }
