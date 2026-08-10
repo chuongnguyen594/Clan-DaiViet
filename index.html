@@ -7,54 +7,255 @@
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700;900&display=swap" rel="stylesheet">
 <title>CLAN ĐẠI VIỆT TOP 1 VIỆT NAM</title>
 
-<link rel="icon" type="image/png" href="favicon.png">
-<link rel="stylesheet" href="style.css">
+
+<style>
+
+*{
+box-sizing:border-box;
+}
+
+
+body{
+
+margin:0;
+background:#050505;
+color:white;
+font-family:'Roboto Condensed', Arial, sans-serif;
+
+}
+
+
+/* HEADER */
+
+.header{
+
+background:
+linear-gradient(135deg,#3b0000,#d40000,#550000);
+
+text-align:center;
+
+padding:40px;
+
+font-size:45px;
+font-family:'Roboto Condensed',sans-serif;
+font-weight:900;
+
+letter-spacing:2px;
+line-height:1.5;
+color:white;
+
+text-shadow:
+0 0 10px gold,
+0 0 25px red,
+0 0 40px orange;
+
+border-bottom:3px solid gold;
+
+}
+
+
+
+/* DÒNG TIÊU ĐỀ */
+
+.title{
+
+text-align:center;
+
+margin-top:40px;
+
+font-size:35px;
+
+font-weight:bold;
+
+color:#ffcc00;
+
+}
+
+
+
+/* KHUNG GIẢI */
+
+.container{
+
+width:90%;
+
+margin:auto;
+
+display:grid;
+
+grid-template-columns:repeat(3,1fr);
+
+gap:30px;
+
+margin-top:50px;
+
+}
+
+
+
+/* CARD */
+
+.card{
+
+background:
+linear-gradient(145deg,#222,#111);
+
+border-radius:20px;
+
+padding:35px;
+
+text-align:center;
+
+border:1px solid #444;
+
+box-shadow:
+0 0 20px rgba(255,0,0,.3);
+
+transition:.3s;
+
+}
+
+
+
+.card:hover{
+
+transform:translateY(-10px) scale(1.05);
+
+background:#8b0000;
+
+box-shadow:
+0 0 30px red;
+
+cursor:pointer;
+
+}
+
+
+
+/* ICON */
+
+.icon{
+
+font-size:70px;
+
+}
+
+
+
+/* TÊN GIẢI */
+
+.name{
+
+font-size:25px;
+
+font-weight:bold;
+
+margin-top:20px;
+
+}
+
+
+
+/* BUTTON */
+
+.btn{
+
+margin-top:25px;
+
+display:inline-block;
+
+padding:15px 35px;
+
+background:
+linear-gradient(#ffd700,#ff9900);
+
+color:black;
+
+font-weight:bold;
+
+border-radius:10px;
+
+text-decoration:none;
+
+box-shadow:
+
+0 0 15px gold;
+
+}
+
+
+
+.btn:hover{
+
+background:white;
+
+}
+
+
+
+/* KHU VỰC HIỂN THỊ */
+
+#content{
+
+width:90%;
+
+margin:50px auto;
+
+padding:35px;
+
+background:#171717;
+
+border-radius:20px;
+
+border:1px solid #444;
+
+box-shadow:
+
+0 0 20px rgba(255,215,0,.2);
+
+}
+
+
+
+/* FOOTER */
+
+
+.footer{
+
+margin-top:60px;
+
+padding:25px;
+
+text-align:center;
+
+background:#111;
+
+color:#aaa;
+
+border-top:1px solid #333;
+
+}
+
+
+
+</style>
 
 </head>
 
 
 <body>
 
-<header class="topbar">
 
-    <div class="logo">
-        <img src="favicon.png" alt="DV">
-        <span>ĐẠI VIỆT</span>
-    </div>
 
-    <nav class="menu">
+<div class="header">
 
-        <a href="#">🏠 Trang chủ</a>
-        <a href="#">🏆 Giải đấu</a>
-        <a href="#">🎬 Media</a>
-        <a href="#">👑 Hall Of Fame</a>
-        <a href="#">👥 Thành viên</a>
-        <a href="#">💰 Trao thưởng</a>
-        <a href="#">📺 Livestream</a>
+🏆 CLAN ĐẠI VIỆT TOP 1 VIỆT NAM
 
-    </nav>
+<br>
 
-</header>
-<section class="hero">
-    <img src="banner.jpg" class="hero-banner">
-    <div class="hero-overlay">
+⚔️ CLASH OF CLANS
 
-        <h1>🏆 CLAN ĐẠI VIỆT</h1>
-
-        <h2>HỆ THỐNG GIẢI ĐẤU ESPORT</h2>
-
-        <p>
-            Clash of Clans • Đại Việt Top 1 Việt Nam
-        </p>
-
-        <button class="hero-btn">
-            THAM GIA GIẢI ĐẤU
-        </button>
-
-    </div>
-
-</section>
-
+</div>
 
 
 
@@ -183,42 +384,7 @@ VÀO GIẢI
 </a>
 
 </div>
-<div class="card">
 
-    <div class="icon">🏆</div>
-
-    <div class="name">
-        BAY CÚP HUYỀN THOẠI 2
-    </div>
-
-    <a class="btn"
-       href="javascript:void(0)"
-       onclick="showPage('baycup2')">
-
-        VÀO GIẢI
-
-    </a>
-
-</div>
-
-
-<div class="card">
-
-    <div class="icon">🏆</div>
-
-    <div class="name">
-        BAY CÚP HUYỀN THOẠI 1
-    </div>
-
-    <a class="btn"
-       href="javascript:void(0)"
-       onclick="showPage('baycup1')"
-
-        VÀO GIẢI
-
-    </a>
-
-</div>
 
 
 
@@ -284,23 +450,7 @@ XEM
 </div>
 
 
-<div class="card">
 
-    <div class="icon">🎬</div>
-
-    <div class="name">
-        MEDIA CENTER
-    </div>
-
-    <a class="btn"
-       href="javascript:void(0)"
-       onclick="showPage('media')">
-
-        XEM
-
-    </a>
-
-</div>
 
 
 <div id="content">
@@ -329,26 +479,48 @@ XEM
 
 
 
-<script src="script.js"></script>
-
 <script>
-(async () => {
-    const data = await api("TrangChu");
-    document.querySelector(".header").innerHTML =
-        "🏆 " + data[0][1].replace(/\n/g, "<br>");
-})();
 
-(async () => {
-    const ds = await api("DanhSachGiai");
 
-    let cards = document.querySelectorAll(".name");
+google.script.run.withSuccessHandler(function(data){
 
-    for (let i = 0; i < cards.length; i++) {
-        if (ds[i]) {
-            cards[i].innerHTML = ds[i][0];
-        }
-    }
-})();
+
+document.querySelector(".header").innerHTML =
+"🏆 " + data[0][1].replace(/\n/g,"<br>");
+
+
+}).getTrangChu();
+
+
+
+
+google.script.run.withSuccessHandler(function(ds){
+
+
+let cards =
+document.querySelectorAll(".name");
+
+
+
+for(let i=0;i<cards.length;i++){
+
+
+if(ds[i]){
+
+cards[i].innerHTML =
+ds[i][0];
+
+}
+
+
+}
+
+
+
+}).getDanhSachGiai();
+
+
+
 </script>
 
 
@@ -367,33 +539,7 @@ cursor:pointer;">
 <div id="luat3vs3"></div>
 
 
-<!-- POPUP ĐĂNG KÝ -->
-
-<div id="popupDangKy" class="popup">
-
-<div class="popup-box">
-
-<span class="close" onclick="dongDangKy()">&times;</span>
-
-<h2>📝 ĐĂNG KÝ GIẢI 3VS3</h2>
-
-<input id="teamName" type="text" placeholder="Tên đội">
-
-<input id="captain" type="text" placeholder="Đội trưởng">
-
-<input id="tv2" type="text" placeholder="Thành viên 2">
-
-<input id="tv3" type="text" placeholder="Thành viên 3">
-
-<button onclick="dangKyTeam()">
-
-✅ ĐĂNG KÝ
-
-</button>
-
-</div>
-
-</div>
+<?!= include('javascript'); ?>
 
 
 </body>

@@ -175,7 +175,41 @@ content.innerHTML = `
 
 <p>CLAN ĐẠI VIỆT - RANK ESPORT</p>
 <div style="text-align:center;margin:25px 0;">
+<button
+onclick="alert('Chức năng đăng ký sẽ mở trong thời gian tới')"
+style="
+background:#16a34a;
+color:white;
+padding:12px 28px;
+font-size:18px;
+font-weight:bold;
+border:none;
+border-radius:10px;
+cursor:pointer;
+margin-right:15px;
+">
 
+🟢 ĐĂNG KÝ GIẢI
+
+</button>
+
+<button
+onclick="hienLuat3vs3()"
+style="
+background:#b8860b;
+color:white;
+padding:12px 28px;
+font-size:18px;
+font-weight:bold;
+border:none;
+border-radius:10px;
+cursor:pointer;
+margin-right:20px;
+">
+
+📜 ĐIỀU LỆ
+
+</button>
 <button onclick="bocTham3vs3()"
 style="
 padding:15px 40px;
@@ -299,90 +333,8 @@ content.innerHTML = html;
 .getReward();
 
 break;
-case "baycup2":
 
-content.innerHTML = `
 
-<h1>🏆 BAY CÚP HUYỀN THOẠI 2</h1>
-
-<p>CLAN ĐẠI VIỆT - ĐĂNG KÝ BAY CÚP</p>
-
-<div style="text-align:center;margin:25px 0;">
-
-<button onclick="moFormBayCup2()"
-style="
-padding:15px 35px;
-font-size:18px;
-font-weight:bold;
-background:linear-gradient(#FFD700,#FF9900);
-color:#111;
-border:none;
-border-radius:12px;
-cursor:pointer;
-box-shadow:0 0 15px gold;
-">
-📝 ĐĂNG KÝ
-</button>
-
-</div>
-
-<div id="formBayCup2"></div>
-
-<hr>
-
-<h2>📋 DANH SÁCH ĐĂNG KÝ</h2>
-
-<div id="dsBayCup2">
-⏳ Đang tải...
-</div>
-
-`;
-
-taiDanhSachBayCup2();
-
-break;
-case "baycup1":
-
-content.innerHTML = `
-
-<h1>🏆 BAY CÚP HUYỀN THOẠI 1</h1>
-
-<p>CLAN ĐẠI VIỆT - ĐĂNG KÝ BAY CÚP</p>
-
-<div style="text-align:center;margin:25px 0;">
-
-<button onclick="moFormBayCup1()"
-style="
-padding:15px 35px;
-font-size:18px;
-font-weight:bold;
-background:linear-gradient(#FFD700,#FF9900);
-color:#111;
-border:none;
-border-radius:12px;
-cursor:pointer;
-box-shadow:0 0 15px gold;
-">
-📝 ĐĂNG KÝ
-</button>
-
-</div>
-
-<div id="formBayCup1"></div>
-
-<hr>
-
-<h2>📋 DANH SÁCH ĐĂNG KÝ</h2>
-
-<div id="dsBayCup1">
-⏳ Đang tải...
-</div>
-
-`;
-
-taiDanhSachBayCup1();
-
-break;
 case "legend":
 
 content.innerHTML = `
@@ -516,7 +468,98 @@ alert("Lỗi HT1: " + err.message);
 
 break;
 
+// ================================
+// BAY CÚP HUYỀN THOẠI 2
+// ================================
+case "baycup2":
 
+content.innerHTML = `
+
+<h1>🏆 BAY CÚP HUYỀN THOẠI 2</h1>
+
+<p>CLAN ĐẠI VIỆT - ĐĂNG KÝ BAY CÚP</p>
+
+<div style="text-align:center;margin:25px 0;">
+
+<button onclick="moFormBayCup2()"
+style="
+padding:15px 35px;
+font-size:18px;
+font-weight:bold;
+background:linear-gradient(#FFD700,#FF9900);
+color:#111;
+border:none;
+border-radius:12px;
+cursor:pointer;
+box-shadow:0 0 15px gold;
+">
+📝 ĐĂNG KÝ
+</button>
+
+</div>
+
+<div id="formBayCup2"></div>
+
+<hr>
+
+<h2>📋 DANH SÁCH ĐĂNG KÝ</h2>
+
+<div id="dsBayCup2">
+⏳ Đang tải...
+</div>
+
+`;
+
+taiDanhSachBayCup2();
+
+break;
+
+
+// ================================
+// BAY CÚP HUYỀN THOẠI 1
+// ================================
+case "baycup1":
+
+content.innerHTML = `
+
+<h1>🏆 BAY CÚP HUYỀN THOẠI 1</h1>
+
+<p>CLAN ĐẠI VIỆT - ĐĂNG KÝ BAY CÚP</p>
+
+<div style="text-align:center;margin:25px 0;">
+
+<button onclick="moFormBayCup1()"
+style="
+padding:15px 35px;
+font-size:18px;
+font-weight:bold;
+background:linear-gradient(#FFD700,#FF9900);
+color:#111;
+border:none;
+border-radius:12px;
+cursor:pointer;
+box-shadow:0 0 15px gold;
+">
+📝 ĐĂNG KÝ
+</button>
+
+</div>
+
+<div id="formBayCup1"></div>
+
+<hr>
+
+<h2>📋 DANH SÁCH ĐĂNG KÝ</h2>
+
+<div id="dsBayCup1">
+⏳ Đang tải...
+</div>
+
+`;
+
+taiDanhSachBayCup1();
+
+break;
 
 case "esport":
 
@@ -1031,890 +1074,5 @@ text-align:center;
 
 `;
 
-}
-// ==========================================
-// BAY CÚP HUYỀN THOẠI 2
-// ==========================================
-
-function moFormBayCup2(){
-
-    document.getElementById("formBayCup2").innerHTML = `
-
-    <div style="
-        max-width:650px;
-        margin:20px auto;
-        padding:25px;
-        background:#151515;
-        border:1px solid #555;
-        border-radius:18px;
-        box-shadow:0 0 20px rgba(255,215,0,.2);
-    ">
-
-        <h2 style="
-            color:#FFD700;
-            text-align:center;
-            margin-top:0;
-        ">
-            📝 ĐĂNG KÝ BAY CÚP HUYỀN THOẠI 2
-        </h2>
-
-        <label style="font-weight:bold;">
-            📱 Zalo
-        </label>
-
-        <input
-            id="bay2_zalo"
-            type="text"
-            placeholder="Nhập tên Zalo"
-            style="
-                width:100%;
-                padding:12px;
-                margin:8px 0 20px;
-                border-radius:8px;
-                border:1px solid #555;
-                background:#222;
-                color:white;
-                box-sizing:border-box;
-            "
-        >
-
-        <label style="font-weight:bold;">
-            🎮 Số acc đăng ký
-        </label>
-
-        <select
-            id="bay2_soAcc"
-            onchange="taoAccBayCup2()"
-            style="
-                width:100%;
-                padding:12px;
-                margin:8px 0 20px;
-                border-radius:8px;
-                background:#222;
-                color:white;
-                border:1px solid #555;
-                box-sizing:border-box;
-            "
-        >
-
-            <option value="1">1 acc</option>
-            <option value="2">2 acc</option>
-            <option value="3">3 acc</option>
-
-        </select>
-
-        <div id="bay2_acc"></div>
-
-        <button
-            onclick="guiDangKyBayCup2()"
-            style="
-                width:100%;
-                margin-top:20px;
-                padding:14px;
-                background:linear-gradient(#FFD700,#FF9900);
-                color:#111;
-                border:none;
-                border-radius:10px;
-                font-size:18px;
-                font-weight:bold;
-                cursor:pointer;
-                box-shadow:0 0 15px gold;
-            "
-        >
-            ✅ GỬI ĐĂNG KÝ
-        </button>
-
-    </div>
-    `;
-
-    taoAccBayCup2();
-}
-
-
-// ==========================================
-// TẠO Ô ACC THEO SỐ LƯỢNG
-// ==========================================
-
-function taoAccBayCup2(){
-
-    const select = document.getElementById("bay2_soAcc");
-
-    if(!select) return;
-
-    const soAcc = Number(select.value);
-
-    let html = "";
-
-    for(let i = 1; i <= soAcc; i++){
-
-        html += `
-
-        <div style="
-            margin-top:15px;
-            padding:18px;
-            background:#222;
-            border:1px solid #444;
-            border-radius:12px;
-        ">
-
-            <h3 style="
-                color:#FFD700;
-                margin-top:0;
-            ">
-                🎮 ACC ${i}
-            </h3>
-
-            <label>
-                Nick game ${i}
-            </label>
-
-            <input
-                id="bay2_nick${i}"
-                type="text"
-                placeholder="Nhập Nick game ${i}"
-                style="
-                    width:100%;
-                    padding:12px;
-                    margin:8px 0 12px;
-                    border-radius:8px;
-                    border:1px solid #555;
-                    background:#111;
-                    color:white;
-                    box-sizing:border-box;
-                "
-            >
-
-            <label>
-                Mã code ${i}
-            </label>
-
-            <input
-                id="bay2_code${i}"
-                type="text"
-                placeholder="Nhập Mã code acc ${i}"
-                style="
-                    width:100%;
-                    padding:12px;
-                    margin:8px 0 5px;
-                    border-radius:8px;
-                    border:1px solid #555;
-                    background:#111;
-                    color:white;
-                    box-sizing:border-box;
-                "
-            >
-
-        </div>
-        `;
-    }
-
-    document.getElementById("bay2_acc").innerHTML = html;
-}
-
-
-// ==========================================
-// GỬI ĐĂNG KÝ
-// ==========================================
-
-function guiDangKyBayCup2(){
-
-    const zaloElement =
-        document.getElementById("bay2_zalo");
-
-    const soAccElement =
-        document.getElementById("bay2_soAcc");
-
-    if(!zaloElement || !soAccElement){
-
-        alert("❌ Không tìm thấy biểu mẫu đăng ký!");
-        return;
-
-    }
-
-    const zalo = zaloElement.value.trim();
-
-    const soAcc = Number(soAccElement.value);
-
-    if(!zalo){
-
-        alert("⚠️ Vui lòng nhập Zalo!");
-        zaloElement.focus();
-        return;
-
-    }
-
-    let danhSachAcc = [];
-
-    for(let i = 1; i <= soAcc; i++){
-
-        const nick =
-            document.getElementById("bay2_nick" + i).value.trim();
-
-        const code =
-            document.getElementById("bay2_code" + i).value.trim();
-
-        if(!nick){
-
-            alert("⚠️ Vui lòng nhập Nick game acc " + i + "!");
-            return;
-
-        }
-
-        if(!code){
-
-            alert("⚠️ Vui lòng nhập Mã code acc " + i + "!");
-            return;
-
-        }
-
-        danhSachAcc.push({
-            nick: nick,
-            code: code
-        });
-
-    }
-
-    // Khóa nút trong lúc gửi
-    const buttons =
-        document.querySelectorAll("#formBayCup2 button");
-
-    buttons.forEach(function(btn){
-        btn.disabled = true;
-        btn.innerText = "⏳ ĐANG GỬI...";
-    });
-
-
-    google.script.run
-
-    .withSuccessHandler(function(result){
-
-        if(result && result.status === "success"){
-
-            alert("✅ ĐĂNG KÝ BAY CÚP HUYỀN THOẠI 2 THÀNH CÔNG!");
-
-            document.getElementById("formBayCup2").innerHTML = "";
-
-            taiDanhSachBayCup2();
-
-        }else{
-
-            alert(
-                "❌ " +
-                (result && result.message
-                    ? result.message
-                    : "Đăng ký thất bại!")
-            );
-
-            buttons.forEach(function(btn){
-                btn.disabled = false;
-                btn.innerText = "✅ GỬI ĐĂNG KÝ";
-            });
-
-        }
-
-    })
-
-    .withFailureHandler(function(error){
-
-        console.error(error);
-
-        alert(
-            "❌ Lỗi hệ thống: " +
-            (error && error.message
-                ? error.message
-                : "Không xác định")
-        );
-
-        buttons.forEach(function(btn){
-            btn.disabled = false;
-            btn.innerText = "✅ GỬI ĐĂNG KÝ";
-        });
-
-    })
-
-    .dangKyBayCupHuyenThoai2(
-        zalo,
-        danhSachAcc
-    );
-
-}
-
-
-// ==========================================
-// TẢI DANH SÁCH BAY CÚP 2
-// ==========================================
-
-function taiDanhSachBayCup2(){
-
-    const box =
-        document.getElementById("dsBayCup2");
-
-    if(!box) return;
-
-    box.innerHTML =
-        "⏳ Đang tải danh sách...";
-
-
-    google.script.run
-
-    .withSuccessHandler(function(data){
-
-        box.innerHTML =
-            taoBangBayCup2(data);
-
-    })
-
-    .withFailureHandler(function(error){
-
-        box.innerHTML =
-            `
-            <div style="
-                color:#ff4444;
-                text-align:center;
-                padding:25px;
-            ">
-                ❌ Không tải được danh sách
-                <br>
-                ${error && error.message
-                    ? error.message
-                    : ""}
-            </div>
-            `;
-
-    })
-
-    .getBayCupHuyenThoai2();
-
-}
-
-
-// ==========================================
-// TẠO BẢNG DANH SÁCH
-// ==========================================
-
-function taoBangBayCup2(data){
-
-    if(!data || data.length === 0){
-
-        return `
-        <div style="
-            text-align:center;
-            padding:30px;
-            color:#ffcc00;
-            font-size:20px;
-        ">
-            📋 Chưa có người đăng ký
-        </div>
-        `;
-
-    }
-
-
-    let html = `
-
-    <div style="
-        overflow-x:auto;
-        width:100%;
-    ">
-
-    <table style="
-        width:100%;
-        min-width:900px;
-        border-collapse:collapse;
-        background:#111;
-        color:white;
-        text-align:center;
-    ">
-
-    <thead>
-
-        <tr style="
-            background:linear-gradient(90deg,#b30000,#ff0000);
-            color:white;
-        ">
-
-            <th style="padding:12px;border:1px solid #555;">
-                STT
-            </th>
-
-            <th style="padding:12px;border:1px solid #555;">
-                Zalo
-            </th>
-
-            <th style="padding:12px;border:1px solid #555;">
-                Nick game
-            </th>
-
-            <th style="padding:12px;border:1px solid #555;">
-                Mã code
-            </th>
-
-            <th style="padding:12px;border:1px solid #555;">
-                Đã đóng tiền
-            </th>
-
-            <th style="padding:12px;border:1px solid #555;">
-                Lên hạng
-            </th>
-
-        </tr>
-
-    </thead>
-
-    <tbody>
-    `;
-
-
-    for(let i = 0; i < data.length; i++){
-
-        const row = data[i];
-
-        html += `
-
-        <tr style="
-            background:${i % 2 === 0 ? "#1b1b1b" : "#111"};
-        ">
-
-            <td style="padding:10px;border:1px solid #444;">
-                ${row[0] || ""}
-            </td>
-
-            <td style="padding:10px;border:1px solid #444;">
-                ${row[1] || ""}
-            </td>
-
-            <td style="padding:10px;border:1px solid #444;">
-                ${row[2] || ""}
-            </td>
-
-            <td style="padding:10px;border:1px solid #444;">
-                ${row[3] || ""}
-            </td>
-
-            <td style="padding:10px;border:1px solid #444;">
-                ${row[4] || "❌ Chưa"}
-            </td>
-
-            <td style="padding:10px;border:1px solid #444;">
-                ${row[5] || "❌ Chưa"}
-            </td>
-
-        </tr>
-
-        `;
-
-    }
-
-
-    html += `
-
-    </tbody>
-
-    </table>
-
-    </div>
-    `;
-
-    return html;
-
-}
-// ==========================================
-// BAY CÚP HUYỀN THOẠI 1
-// ==========================================
-
-function moFormBayCup1(){
-
-    document.getElementById("formBayCup1").innerHTML = `
-
-    <div style="
-        max-width:600px;
-        margin:20px auto;
-        padding:25px;
-        background:#151515;
-        border:1px solid #555;
-        border-radius:18px;
-        box-shadow:0 0 20px rgba(255,215,0,.2);
-    ">
-
-        <h2 style="color:#FFD700;text-align:center;">
-            📝 ĐĂNG KÝ BAY CÚP HUYỀN THOẠI 1
-        </h2>
-
-        <label>Zalo</label>
-
-        <input id="bay1_zalo"
-        type="text"
-        placeholder="Nhập tên Zalo"
-        style="
-        width:100%;
-        padding:12px;
-        margin:8px 0 20px;
-        border-radius:8px;
-        border:1px solid #555;
-        background:#222;
-        color:white;
-        ">
-
-        <label>Số acc đăng ký</label>
-
-        <select id="bay1_soAcc"
-        onchange="taoAccBayCup1()"
-        style="
-        width:100%;
-        padding:12px;
-        margin:8px 0 20px;
-        border-radius:8px;
-        background:#222;
-        color:white;
-        border:1px solid #555;
-        ">
-
-            <option value="1">1 acc</option>
-            <option value="2">2 acc</option>
-            <option value="3">3 acc</option>
-
-        </select>
-
-        <div id="bay1_acc"></div>
-
-        <button onclick="guiDangKyBayCup1()"
-        style="
-        width:100%;
-        margin-top:20px;
-        padding:14px;
-        background:#0b8f2f;
-        color:white;
-        border:none;
-        border-radius:10px;
-        font-size:18px;
-        font-weight:bold;
-        cursor:pointer;
-        ">
-        ✅ GỬI ĐĂNG KÝ
-        </button>
-
-    </div>
-    `;
-
-    taoAccBayCup1();
-}
-
-
-function taoAccBayCup1(){
-
-    const soAcc =
-        Number(document.getElementById("bay1_soAcc").value);
-
-    let html = "";
-
-    for(let i=1; i<=soAcc; i++){
-
-        html += `
-
-        <div style="
-            margin-top:15px;
-            padding:15px;
-            background:#222;
-            border-radius:12px;
-        ">
-
-            <h3 style="color:#FFD700;">
-                🎮 ACC ${i}
-            </h3>
-
-            <input id="bay1_nick${i}"
-            type="text"
-            placeholder="Nick game ${i}"
-            style="
-            width:100%;
-            padding:12px;
-            margin-bottom:10px;
-            border-radius:8px;
-            border:1px solid #555;
-            background:#111;
-            color:white;
-            ">
-
-            <input id="bay1_code${i}"
-            type="text"
-            placeholder="Mã code acc ${i}"
-            style="
-            width:100%;
-            padding:12px;
-            border-radius:8px;
-            border:1px solid #555;
-            background:#111;
-            color:white;
-            ">
-
-        </div>
-        `;
-    }
-
-    document.getElementById("bay1_acc").innerHTML = html;
-}
-
-
-function guiDangKyBayCup1(){
-
-    const zalo =
-        document.getElementById("bay1_zalo").value.trim();
-
-    const soAcc =
-        Number(document.getElementById("bay1_soAcc").value);
-
-    if(!zalo){
-
-        alert("Vui lòng nhập Zalo!");
-        return;
-
-    }
-
-    let params = new URLSearchParams();
-
-    params.append(
-        "action",
-        "DangKyBayCupHuyenThoai1"
-    );
-
-    params.append("zalo", zalo);
-    params.append("soAcc", soAcc);
-
-    for(let i=1; i<=soAcc; i++){
-
-        const nick =
-            document.getElementById(
-                "bay1_nick"+i
-            ).value.trim();
-
-        const code =
-            document.getElementById(
-                "bay1_code"+i
-            ).value.trim();
-
-        if(!nick){
-
-            alert(
-                "Vui lòng nhập Nick game acc "+i
-            );
-
-            return;
-        }
-
-        if(!code){
-
-            alert(
-                "Vui lòng nhập Mã code acc "+i
-            );
-
-            return;
-        }
-
-        params.append("nick"+i, nick);
-        params.append("code"+i, code);
-
-    }
-
-
-    fetch("?"+params.toString())
-
-    .then(res => res.json())
-
-    .then(data => {
-
-        if(data.status === "success"){
-
-            alert("✅ Đăng ký thành công!");
-
-            document.getElementById(
-                "formBayCup1"
-            ).innerHTML = "";
-
-            taiDanhSachBayCup1();
-
-        }else{
-
-            alert("❌ "+data.message);
-
-        }
-
-    })
-
-    .catch(err => {
-
-        console.error(err);
-
-        alert("❌ Không thể gửi đăng ký!");
-
-    });
-
-}
-
-
-function taiDanhSachBayCup1(){
-
-    google.script.run
-
-    .withSuccessHandler(function(data){
-
-        document.getElementById(
-            "dsBayCup1"
-        ).innerHTML =
-            taoBangBayCup1(data);
-
-    })
-
-    .withFailureHandler(function(err){
-
-        document.getElementById(
-            "dsBayCup1"
-        ).innerHTML =
-            "❌ Lỗi tải danh sách: "+err.message;
-
-    })
-
-    .getBayCupHuyenThoai1();
-
-}
-
-
-// ==========================================
-// TẠO BẢNG BAY CÚP HUYỀN THOẠI 1
-// ==========================================
-
-function taoBangBayCup1(data){
-
-    if(!data || data.length === 0){
-
-        return `
-        <p style="
-            text-align:center;
-            color:#aaa;
-        ">
-            Chưa có người đăng ký.
-        </p>
-        `;
-
-    }
-
-    let html = `
-
-    <div style="
-        overflow-x:auto;
-        width:100%;
-    ">
-
-    <table style="
-        width:100%;
-        border-collapse:collapse;
-        min-width:900px;
-        color:white;
-    ">
-
-    <thead>
-
-        <tr style="
-            background:#7a0000;
-            color:#FFD700;
-        ">
-
-            <th style="padding:12px;border:1px solid #444;">
-                STT
-            </th>
-
-            <th style="padding:12px;border:1px solid #444;">
-                Zalo
-            </th>
-
-            <th style="padding:12px;border:1px solid #444;">
-                Nick game
-            </th>
-
-            <th style="padding:12px;border:1px solid #444;">
-                Mã code
-            </th>
-
-            <th style="padding:12px;border:1px solid #444;">
-                Tổng kết số cúp
-            </th>
-
-            <th style="padding:12px;border:1px solid #444;">
-                Đã đóng tiền
-            </th>
-
-            <th style="padding:12px;border:1px solid #444;">
-                Lên hạng
-            </th>
-
-        </tr>
-
-    </thead>
-
-    <tbody>
-    `;
-
-
-    for(let i=0; i<data.length; i++){
-
-        const row = data[i];
-
-        html += `
-
-        <tr style="
-            background:${i % 2 === 0
-                ? "#1b1b1b"
-                : "#111"};
-        ">
-
-            <td style="padding:10px;border:1px solid #444;">
-                ${row[0] || ""}
-            </td>
-
-            <td style="padding:10px;border:1px solid #444;">
-                ${row[1] || ""}
-            </td>
-
-            <td style="padding:10px;border:1px solid #444;">
-                ${row[2] || ""}
-            </td>
-
-            <td style="padding:10px;border:1px solid #444;">
-                ${row[3] || ""}
-            </td>
-
-            <td style="
-                padding:10px;
-                border:1px solid #444;
-                color:#FFD700;
-                font-weight:bold;
-            ">
-                ${row[4] || "Chưa tổng kết"}
-            </td>
-
-            <td style="padding:10px;border:1px solid #444;">
-                ${row[5] || "❌ Chưa"}
-            </td>
-
-            <td style="padding:10px;border:1px solid #444;">
-                ${row[6] || "❌ Chưa"}
-            </td>
-
-        </tr>
-
-        `;
-    }
-
-
-    html += `
-
-    </tbody>
-
-    </table>
-
-    </div>
-
-    `;
-
-    return html;
 }
 </script>
