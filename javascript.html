@@ -73,20 +73,6 @@ cursor:pointer;
 
 `;
 
-google.script.run
-.withSuccessHandler(function(data){
-
-document.getElementById("dsBayHT2").innerHTML =
-taoBang(data);
-
-})
-.withFailureHandler(function(err){
-
-document.getElementById("dsBayHT2").innerHTML =
-"❌ Lỗi tải danh sách: " + err.message;
-
-})
-.getBayCupHuyenThoai2();
 
 break;
 case "epl":
