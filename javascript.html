@@ -30,7 +30,65 @@ taoBangThanhVien(data);
 .getDanhSachThanhVien();
 
 break;
+case "bayht2":
 
+content.innerHTML = `
+
+<h1>🏆 BAY CÚP HUYỀN THOẠI 2</h1>
+
+<p>CLAN ĐẠI VIỆT - BAY CÚP HUYỀN THOẠI 2</p>
+
+<hr>
+
+<div style="text-align:center;margin:25px 0;">
+
+<button
+onclick="moFormBayHT2()"
+style="
+background:#16a34a;
+color:white;
+padding:12px 30px;
+font-size:18px;
+font-weight:bold;
+border:none;
+border-radius:10px;
+cursor:pointer;
+">
+
+📝 ĐĂNG KÝ
+
+</button>
+
+</div>
+
+<div id="formBayHT2"></div>
+
+<hr>
+
+<h2>📋 DANH SÁCH ĐĂNG KÝ</h2>
+
+<div id="dsBayHT2">
+⏳ Đang tải danh sách...
+</div>
+
+`;
+
+google.script.run
+.withSuccessHandler(function(data){
+
+document.getElementById("dsBayHT2").innerHTML =
+taoBang(data);
+
+})
+.withFailureHandler(function(err){
+
+document.getElementById("dsBayHT2").innerHTML =
+"❌ Lỗi tải danh sách: " + err.message;
+
+})
+.getBayCupHuyenThoai2();
+
+break;
 case "epl":
 
 content.innerHTML = `
@@ -146,7 +204,63 @@ alert(JSON.stringify(err));
 
 break;
 
+case "bayht2":
 
+content.innerHTML = `
+
+<h1>🏆 BAY CÚP HUYỀN THOẠI 2</h1>
+
+<p>CLAN ĐẠI VIỆT - BAY CÚP HUYỀN THOẠI 2</p>
+
+<hr>
+
+<div style="text-align:center;margin:25px 0;">
+
+<button
+onclick="moFormBayHT2()"
+style="
+background:#16a34a;
+color:white;
+padding:12px 30px;
+font-size:18px;
+font-weight:bold;
+border:none;
+border-radius:10px;
+cursor:pointer;
+">
+📝 ĐĂNG KÝ
+</button>
+
+</div>
+
+<div id="formBayHT2"></div>
+
+<hr>
+
+<h2>📋 DANH SÁCH ĐĂNG KÝ</h2>
+
+<div id="dsBayHT2">
+⏳ Đang tải danh sách...
+</div>
+
+`;
+
+google.script.run
+.withSuccessHandler(function(data){
+
+    document.getElementById("dsBayHT2").innerHTML =
+        taoBang(data);
+
+})
+.withFailureHandler(function(err){
+
+    document.getElementById("dsBayHT2").innerHTML =
+        "❌ Lỗi tải danh sách: " + err.message;
+
+})
+.getBayCupHuyenThoai2();
+
+break;
 
 case "c1":
 
@@ -1073,6 +1187,103 @@ text-align:center;
 </div>
 
 `;
+function taoAccBayHT2() {
 
+  const soAcc = Number(
+    document.getElementById("bayht2_soAcc").value
+  );
+
+  let html = "";
+
+  for (let i = 1; i <= soAcc; i++) {
+
+    html += `
+      <div style="
+        margin-top:15px;
+        padding:15px;
+        background:#151515;
+        border-radius:8px;
+      ">
+
+        <b style="color:#ffd700;">
+          ACC ${i}
+        </b>
+
+        <input
+          id="bayht2_nick${i}"
+          type="text"
+          placeholder="Nick game ${i}"
+          style="width:100%;padding:10px;margin-top:8px;"
+        >
+
+        <input
+          id="bayht2_code${i}"
+          type="text"
+          placeholder="Mã code ${i}"
+          style="width:100%;padding:10px;margin-top:8px;"
+        >
+
+      </div>
+    `;
+  }
+
+  document.getElementById("accBayHT2").innerHTML = html;
+}
+
+function guiDangKyBayHT2() {
+
+  const zalo = document.getElementById("bayht2_zalo").value.trim();
+
+  const soAcc = Number(
+    document.getElementById("bayht2_soAcc").value
+  );
+
+  if (!zalo) {
+    alert("❌ Vui lòng nhập Zalo!");
+    return;
+  }
+
+  const data = {
+    action: "DangKyBayCupHuyenThoai2",
+    zalo: zalo,
+    soAcc: soAcc
+  };
+
+  for (let i = 1; i <= soAcc; i++) {
+
+    data["nick" + i] =
+      document.getElementById("bayht2_nick" + i).value.trim();
+
+    data["code" + i] =
+      document.getElementById("bayht2_code" + i).value.trim();
+
+    if (!data["nick" + i] || !data["code" + i]) {
+      alert("❌ Vui lòng nhập đủ Nick và Mã code của ACC " + i);
+      return;
+    }
+  }
+
+  google.script.run
+    .withSuccessHandler(function(res) {
+
+      if (res.status === "success") {
+
+        alert("✅ Đăng ký thành công!");
+
+        showPage("bayht2");
+
+      } else {
+
+        alert("❌ " + res.message);
+
+      }
+
+    })
+    .withFailureHandler(function(err) {
+
+      alert("❌ Lỗi: " + err.message);
+
+    })
+    .xuLyDangKyBayCupHuyenThoai2(data);
 }
 </script>
