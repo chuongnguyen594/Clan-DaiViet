@@ -47,6 +47,10 @@ case "HuyenThoai1":
   data = getHuyenThoai1();
   break;
 
+case "BayCupHuyenThoai2":
+  data = getBayCupHuyenThoai2();
+  break;
+
 case "HuyenThoai1Top3Sao":
   data = getHuyenThoai1Top3Sao();
   break;
@@ -118,6 +122,9 @@ case "3vs3Top8":
   break;
   case "DangKyBayCupHuyenThoai1":
   data = DangKyBayCupHuyenThoai1(e);
+  break;
+  case "DangKyBayCupHuyenThoai2":
+  data = xuLyDangKyBayCupHuyenThoai2(e);
   break;
       default:
         data = {
@@ -633,13 +640,30 @@ function dangKyBayCupHuyenThoai2(zalo, danhSachAcc) {
     ]);
 
   });
+  }
+// ==========================================
+// XỬ LÝ ĐĂNG KÝ BAY CÚP HUYỀN THOẠI 2 TỪ WEBSITE
+// ==========================================
 
-  return {
-    status: "success",
-    message: "Đăng ký thành công!"
-  };
+function xuLyDangKyBayCupHuyenThoai2(e) {
 
+  const zalo = e.parameter.zalo;
+  const soAcc = Number(e.parameter.soAcc);
+
+  const danhSachAcc = [];
+
+  for (let i = 1; i <= soAcc; i++) {
+
+    danhSachAcc.push({
+      nick: e.parameter["nick" + i],
+      code: e.parameter["code" + i]
+    });
+
+  }
+
+  return dangKyBayCupHuyenThoai2(zalo, danhSachAcc);
 }
+  
 
 
 // ==========================================
