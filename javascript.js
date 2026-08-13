@@ -1,7 +1,8 @@
 async function api(action) {
 
     const response = await fetch(
-        window.location.pathname + "?action=" + encodeURIComponent(action)
+        "https://script.google.com/macros/s/AKfycbzlhETATxd9MHSD1Ce3e_uIqtD-sTSAAOnu6W1Iia6dXjYi6Ecv35jTYujelPkoJRIAaA/exec?action=" +
+        encodeURIComponent(action)
     );
 
     if (!response.ok) {
