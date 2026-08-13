@@ -30,14 +30,17 @@ content.innerHTML = `
 </div>
 `;
 
-google.script.run
-.withSuccessHandler(function(data){
+api("ThanhVien").then(function(data) {
 
-document.getElementById("memberTable").innerHTML =
-taoBangThanhVien(data);
+    document.getElementById("memberTable").innerHTML =
+        taoBangThanhVien(data);
 
-})
-.getDanhSachThanhVien();
+}).catch(function(err) {
+
+    document.getElementById("memberTable").innerHTML =
+        "❌ Lỗi tải danh sách thành viên: " + err.message;
+
+});
 
 break;
 case "bayht2":
