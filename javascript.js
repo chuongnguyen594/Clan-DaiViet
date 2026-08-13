@@ -1350,3 +1350,64 @@ function guiDangKyBayHT2() {
 
 });
 }
+async function taiDanhSachBayCup2() {
+  const box = document.getElementById("dsBayCup2");
+
+  if (!box) return;
+
+  box.innerHTML = "⏳ Đang tải danh sách...";
+
+  try {
+    const data = await api("getDanhSachBayCup2");
+
+    if (!data || data.length === 0) {
+      box.innerHTML = "📭 Chưa có ai đăng ký.";
+      return;
+    }
+
+    let html = `
+      <table style="
+        width:100%;
+        border-collapse:collapse;
+        margin-top:10px;
+        color:white;
+        text-align:center;
+      ">
+        <thead>
+          <tr style="background:#b30000;color:#fff;">
+            <th style="padding:10px;border:1px solid #555;">STT</th>
+            <th style="padding:10px;border:1px solid #555;">Zalo</th>
+            <th style="padding:10px;border:1px solid #555;">Nick game</th>
+            <th style="padding:10px;border:1px solid #555;">Mã code</th>
+            <th style="padding:10px;border:1px solid #555;">Đã đóng tiền</th>
+            <th style="padding:10px;border:1px solid #555;">Lên hạng</th>
+          </tr>
+        </thead>
+        <tbody>
+    `;
+
+    data.forEach(function(row, index) {
+      html += `
+        <tr style="background:${index % 2 === 0 ? '#111' : '#222'};">
+          <td style="padding:10px;border:1px solid #444;">${index + 1}</td>
+          <td style="padding:10px;border:1px solid #444;">${row[1] || ""}</td>
+          <td style="padding:10px;border:1px solid #444;">${row[2] || ""}</td>
+          <td style="padding:10px;border:1px solid #444;">${row[3] || ""}</td>
+          <td style="padding:10px;border:1px solid #444;">${row[4] || ""}</td>
+          <td style="padding:10px;border:1px solid #444;">${row[5] || ""}</td>
+        </tr>
+      `;
+    });
+
+    html += `
+        </tbody>
+      </table>
+    `;
+
+    box.innerHTML = html;
+
+  } catch (err) {
+    console.error(err);
+    box.innerHTML = "❌ Lỗi tải danh sách: " + err.message;
+  }
+}
