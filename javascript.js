@@ -143,13 +143,12 @@ content.innerHTML = `
 
 // Bảng xếp hạng
 
-google.script.run
-.withSuccessHandler(function(data){
-
-document.getElementById("bxh").innerHTML = taoBang(data);
-
-})
-.getNgoaiHangAnh();
+api("NgoaiHangAnh").then(function(data){
+    document.getElementById("bxh").innerHTML = taoBang(data);
+}).catch(function(err){
+    document.getElementById("bxh").innerHTML =
+        "❌ Lỗi tải bảng xếp hạng: " + err.message;
+});
 
 
 // Top 3 sao
