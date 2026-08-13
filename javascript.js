@@ -1,8 +1,13 @@
-async function api(action) {
+async function api(action, params = {}) {
+
+    const query = new URLSearchParams({
+        action: action,
+        ...params
+    });
 
     const response = await fetch(
-        "https://script.google.com/macros/s/AKfycbzlhETATxd9MHSD1Ce3e_uIqtD-sTSAAOnu6W1Iia6dXjYi6Ecv35jTYujelPkoJRIAaA/exec?action=" +
-        encodeURIComponent(action)
+        "https://script.google.com/macros/s/AKfycbzlhETATxd9MHSD1Ce3e_uIqtD-sTSAAOnu6W1Iia6dXjYi6Ecv35jTYujelPkoJRIAaA/exec?" +
+        query.toString()
     );
 
     if (!response.ok) {
@@ -143,63 +148,67 @@ content.innerHTML = `
 
 // Bảng xếp hạng
 
-api("NgoaiHangAnh").then(function(data){
-    document.getElementById("bxh").innerHTML = taoBang(data);
-}).catch(function(err){
-    document.getElementById("bxh").innerHTML =
-        "❌ Lỗi tải bảng xếp hạng: " + err.message;
-});
+api("Top3Sao")
+  .then(function(data) {
+    const box = document.getElementById("top3sao");
+
+    if (!box) {
+      console.error("Không tìm thấy #top3sao");
+      return;
+    }
+
+    box.innerHTML = taoBang(data);
+  })
+  .catch(function(err) {
+    console.error("Lỗi Top3Sao:", err);
+
+    const box = document.getElementById("top3sao");
+
+    if (box) {
+      box.innerHTML =
+        "❌ Lỗi tải Top 3 sao: " + err.message;
+    }
+  });
 
 
 // Top 3 sao
 
-google.script.run
-.withSuccessHandler(function(data){
-
-document.getElementById("top3sao").innerHTML = taoBang(data);
-
-})
-.getTop3Sao();
+api("Top3Sao").then(function(data){
+    document.getElementById("top3sao").innerHTML = taoBang(data);
+}).catch(function(err){
+    document.getElementById("top3sao").innerHTML =
+        "❌ Lỗi tải Top 3 sao: " + err.message;
+});
 
 
 // Top thủ
 
-google.script.run
-.withSuccessHandler(function(data){
-
-document.getElementById("topthu").innerHTML = taoBang(data);
-
-})
-.getTopThu1Sao();
+api("TopThu1Sao").then(function(data){
+    document.getElementById("topthu").innerHTML = taoBang(data);
+}).catch(function(err){
+    document.getElementById("topthu").innerHTML =
+        "❌ Lỗi tải Top thủ: " + err.message;
+});
 
 
 // Chuỗi thắng
 
-google.script.run
-.withSuccessHandler(function(data){
-
-document.getElementById("chuoithang").innerHTML = taoBang(data);
-
-})
-.getChuoiThang();
+api("ChuoiThang").then(function(data){
+    document.getElementById("chuoiThang").innerHTML = taoBang(data);
+}).catch(function(err){
+    document.getElementById("chuoiThang").innerHTML =
+        "❌ Lỗi tải chuỗi thắng: " + err.message;
+});
 
 
 // Lịch thi đấu
 
-google.script.run
-.withSuccessHandler(function(data){
-
-
-document.getElementById("lichEPL").innerHTML = taoBang(data);
-
-})
-.withFailureHandler(function(err){
-
-console.log(err);
-alert(JSON.stringify(err));
-
-})
-.getLichNgoaiHangAnh();
+api("LichNgoaiHangAnh").then(function(data){
+    document.getElementById("lichEPL").innerHTML = taoBang(data);
+}).catch(function(err){
+    document.getElementById("lichEPL").innerHTML =
+        "❌ Lỗi tải lịch thi đấu: " + err.message;
+});
 
 break;
 
@@ -244,20 +253,19 @@ cursor:pointer;
 
 `;
 
-google.script.run
-.withSuccessHandler(function(data){
+api("BayCupHuyenThoai2")
+.then(function(data) {
 
     document.getElementById("dsBayHT2").innerHTML =
         taoBang(data);
 
 })
-.withFailureHandler(function(err){
+.catch(function(err) {
 
     document.getElementById("dsBayHT2").innerHTML =
         "❌ Lỗi tải danh sách: " + err.message;
 
-})
-.getBayCupHuyenThoai2();
+});
 
 break;
 
@@ -1320,26 +1328,25 @@ function guiDangKyBayHT2() {
     }
   }
 
-  google.script.run
-    .withSuccessHandler(function(res) {
+  api("DangKyBayCupHuyenThoai2", data)
+.then(function(res) {
 
-      if (res.status === "success") {
+    if (res.status === "success") {
 
         alert("✅ Đăng ký thành công!");
 
         showPage("bayht2");
 
-      } else {
+    } else {
 
-        alert("❌ " + res.message);
+        alert("❌ " + (res.message || "Đăng ký thất bại!"));
 
-      }
+    }
 
-    })
-    .withFailureHandler(function(err) {
+})
+.catch(function(err) {
 
-      alert("❌ Lỗi: " + err.message);
+    alert("❌ Lỗi: " + err.message);
 
-    })
-    .xuLyDangKyBayCupHuyenThoai2(data);
+});
 }
