@@ -1,4 +1,15 @@
-alert("Đã nạp javascript.js");
+async function api(action) {
+
+    const response = await fetch(
+        window.location.pathname + "?action=" + encodeURIComponent(action)
+    );
+
+    if (!response.ok) {
+        throw new Error("API lỗi: " + response.status);
+    }
+
+    return await response.json();
+}
 function showPage(page) {
 
 let content = document.getElementById("content");
