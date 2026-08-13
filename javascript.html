@@ -1174,6 +1174,63 @@ text-align:center;
 
 `;
 }
+// ===============================
+// FORM ĐĂNG KÝ BAY CÚP HUYỀN THOẠI 2
+// ===============================
+function moFormBayHT2() {
+
+    const form = document.getElementById("formBayHT2");
+
+    form.innerHTML = `
+        <div style="
+            background:#222;
+            padding:20px;
+            border-radius:12px;
+            margin:20px auto;
+            max-width:700px;
+            border:1px solid #8b0000;
+        ">
+
+            <h2 style="color:#ffd700;text-align:center;">
+                📝 ĐĂNG KÝ BAY CÚP HUYỀN THOẠI 2
+            </h2>
+
+            <label>Zalo:</label>
+            <input id="bayht2_zalo"
+                type="text"
+                placeholder="Nhập tên Zalo"
+                style="width:100%;padding:10px;margin:8px 0;">
+
+            <label>Số lượng acc:</label>
+            <input id="bayht2_soAcc"
+                type="number"
+                min="1"
+                max="10"
+                value="1"
+                style="width:100%;padding:10px;margin:8px 0;"
+                onchange="taoAccBayHT2()">
+
+            <div id="accBayHT2"></div>
+
+            <button onclick="guiDangKyBayHT2()"
+                style="
+                    background:#ffd000;
+                    color:#000;
+                    padding:12px 30px;
+                    border:0;
+                    border-radius:8px;
+                    font-weight:bold;
+                    cursor:pointer;
+                    margin-top:15px;
+                ">
+                ✅ XÁC NHẬN ĐĂNG KÝ
+            </button>
+
+        </div>
+    `;
+
+    taoAccBayHT2();
+}
 function taoAccBayHT2() {
 
   const soAcc = Number(
