@@ -6,9 +6,9 @@ async function api(action, params = {}) {
     });
 
     const response = await fetch(
-        "https://script.google.com/macros/s/AKfycbzlhETATxd9MHSD1Ce3e_uIqtD-sTSAAOnu6W1Iia6dXjYi6Ecv35jTYujelPkoJRIAaA/exec?" +
-        query.toString()
-    );
+    "https://script.google.com/macros/s/AKfycbzlhETATxd9MHSD1Ce3e_uIqtD-sTSAAOnu6W1Iia6dXjYi6Ecv35jTYujelPkoJRIAaA/exec?" +
+    query.toString()
+);
 
     if (!response.ok) {
         throw new Error("API lỗi: " + response.status);
