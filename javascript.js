@@ -1,20 +1,37 @@
 async function api(action, params = {}) {
 
-    const query = new URLSearchParams({
-        action: action,
-        ...params
-    });
+  const query = new URLSearchParams({
+    action: action,
+    ...params
+  });
 
-    const response = await fetch(
+  const url =
     "https://script.google.com/macros/s/AKfycbzlhETATxd9MHSD1Ce3e_uIqtD-sTSAAOnu6W1Iia6dXjYi6Ecv35jTYujelPkoJRIAaA/exec?" +
-    query.toString()
-);
+    query.toString();
 
-    if (!response.ok) {
-        throw new Error("API lỗi: " + response.status);
-    }
+  const response = await fetch(url, {
+    method: "GET",
+    mode: "cors",
+    redirect: "follow",
+    cache: "no-store"
+  });
 
-    return await response.json();
+  if (!response.ok) {
+    throw new Error("API lỗi: " + response.status);
+  }
+
+  const text = await response.text();
+
+  if (!text) {
+    throw new Error("API không trả dữ liệu");
+  }
+
+  try {
+    return JSON.parse(text);
+  } catch (err) {
+    console.error("API trả về:", text);
+    throw new Error("API trả dữ liệu không hợp lệ");
+  }
 }
 function showPage(page) {
 
