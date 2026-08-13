@@ -297,8 +297,11 @@ XEM
 <script>
 (async () => {
     const data = await api("TrangChu");
-    document.querySelector(".header").innerHTML =
-        "🏆 " + data[0][1].replace(/\n/g, "<br>");
+    const header = document.querySelector(".header");
+
+if (header && data && data[0]) {
+    header.innerHTML = "🏆 " + data[0].replace(/\n/g, "<br>");
+}
 })();
 
 (async () => {
