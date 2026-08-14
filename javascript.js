@@ -1375,7 +1375,7 @@ async function taiDanhSachBayCup2() {
   box.innerHTML = "⏳ Đang tải danh sách...";
 
   try {
-    const data = await api("getDanhSachBayCup2");
+    const data = await api("BayCupHuyenThoai2");
 
     console.log("Dữ liệu Bay Cúp 2:", data);
 
