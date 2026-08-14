@@ -1,37 +1,63 @@
-async function api(action, params = {}) {
+function api(action, params = {}) {
+    return new Promise((resolve, reject) => {
 
-  const query = new URLSearchParams({
-    action: action,
-    ...params
-  });
+        const callbackName =
+            "jsonCallback_" +
+            Date.now() +
+            "_" +
+            Math.random().toString(36).substring(2);
 
-  const url =
-  "https://script.google.com/macros/s/AKfycbzlhETATxd9MHSD1Ce3e_uIqtD-sTSAAOnu6W1Iia6dXjYi6Ecv35jTYujelPkoJRIAaA/exec?" +
-  query.toString();
+        const query = new URLSearchParams({
+            action: action,
+            ...params,
+            callback: callbackName
+        });
 
-  const response = await fetch(url, {
-    method: "GET",
-    mode: "cors",
-    redirect: "follow",
-    cache: "no-store"
-  });
+        const url =
+            "https://script.google.com/macros/s/AKfycbzlhETATxd9MHSD1Ce3e_uIqtD-sTSAAOnu6W1Iia6dXjYi6Ecv35jTYujelPkoJRIAaA/exec?" +
+            query.toString();
 
-  if (!response.ok) {
-    throw new Error("API lỗi: " + response.status);
-  }
+        const script = document.createElement("script");
 
-  const text = await response.text();
+        let finished = false;
 
-  if (!text) {
-    throw new Error("API không trả dữ liệu");
-  }
+        window[callbackName] = function(data) {
+            if (finished) return;
 
-  try {
-    return JSON.parse(text);
-  } catch (err) {
-    console.error("API trả về:", text);
-    throw new Error("API trả dữ liệu không hợp lệ");
-  }
+            finished = true;
+
+            delete window[callbackName];
+            script.remove();
+
+            resolve(data);
+        };
+
+        script.onerror = function() {
+            if (finished) return;
+
+            finished = true;
+
+            delete window[callbackName];
+            script.remove();
+
+            reject(new Error("Không kết nối được Google Apps Script"));
+        };
+
+        script.src = url;
+
+        document.body.appendChild(script);
+
+        setTimeout(() => {
+            if (finished) return;
+
+            finished = true;
+
+            delete window[callbackName];
+            script.remove();
+
+            reject(new Error("API quá thời gian phản hồi"));
+        }, 15000);
+    });
 }
 function showPage(page) {
 
