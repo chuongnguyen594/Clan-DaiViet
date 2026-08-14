@@ -133,9 +133,25 @@ case "3vs3Top8":
         };
     }
 
-    return ContentService
-      .createTextOutput(JSON.stringify(data))
-      .setMimeType(ContentService.MimeType.JSON);
+    // ================================
+// TRẢ API - HỖ TRỢ JSONP + JSON
+// ================================
+
+if (e.parameter.callback) {
+
+  const callback = e.parameter.callback;
+
+  return ContentService
+    .createTextOutput(
+      callback + "(" + JSON.stringify(data) + ")"
+    )
+    .setMimeType(ContentService.MimeType.JAVASCRIPT);
+}
+
+// Gọi API bình thường
+return ContentService
+  .createTextOutput(JSON.stringify(data))
+  .setMimeType(ContentService.MimeType.JSON);
   }
 
   // Truy cập website bình thường
