@@ -6,8 +6,8 @@ async function api(action, params = {}) {
   });
 
   const url =
-    "https://script.google.com/macros/s/AKfycbzlhETATxd9MHSD1Ce3e_uIqtD-sTSAA0nu6W1Iia6dXjYi6Ecv35jTYujelPkoJRIAaA/exec?" +
-    query.toString();
+  "https://script.google.com/macros/s/AKfycbzlhETATxd9MHSD1Ce3e_uIqtD-sTSAAOnu6W1Iia6dXjYi6Ecv35jTYujelPkoJRIAaA/exec?" +
+  query.toString();
 
   const response = await fetch(url, {
     method: "GET",
