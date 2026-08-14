@@ -1377,7 +1377,9 @@ async function taiDanhSachBayCup2() {
   try {
     const data = await api("getDanhSachBayCup2");
 
-    if (!data || data.length === 0) {
+    console.log("Dữ liệu Bay Cúp 2:", data);
+
+    if (!Array.isArray(data) || data.length === 0) {
       box.innerHTML = "📭 Chưa có ai đăng ký.";
       return;
     }
@@ -1391,7 +1393,7 @@ async function taiDanhSachBayCup2() {
         text-align:center;
       ">
         <thead>
-          <tr style="background:#b30000;color:#fff;">
+          <tr style="background:#3b0000;color:#fff;">
             <th style="padding:10px;border:1px solid #555;">STT</th>
             <th style="padding:10px;border:1px solid #555;">Zalo</th>
             <th style="padding:10px;border:1px solid #555;">Nick game</th>
@@ -1404,14 +1406,32 @@ async function taiDanhSachBayCup2() {
     `;
 
     data.forEach(function(row, index) {
+
       html += `
         <tr style="background:${index % 2 === 0 ? '#111' : '#222'};">
-          <td style="padding:10px;border:1px solid #444;">${index + 1}</td>
-          <td style="padding:10px;border:1px solid #444;">${row[1] || ""}</td>
-          <td style="padding:10px;border:1px solid #444;">${row[2] || ""}</td>
-          <td style="padding:10px;border:1px solid #444;">${row[3] || ""}</td>
-          <td style="padding:10px;border:1px solid #444;">${row[4] || ""}</td>
-          <td style="padding:10px;border:1px solid #444;">${row[5] || ""}</td>
+          <td style="padding:10px;border:1px solid #444;">
+            ${index + 1}
+          </td>
+
+          <td style="padding:10px;border:1px solid #444;">
+            ${row[1] || ""}
+          </td>
+
+          <td style="padding:10px;border:1px solid #444;">
+            ${row[2] || ""}
+          </td>
+
+          <td style="padding:10px;border:1px solid #444;">
+            ${row[3] || ""}
+          </td>
+
+          <td style="padding:10px;border:1px solid #444;">
+            ${row[4] || ""}
+          </td>
+
+          <td style="padding:10px;border:1px solid #444;">
+            ${row[5] || ""}
+          </td>
         </tr>
       `;
     });
@@ -1424,7 +1444,10 @@ async function taiDanhSachBayCup2() {
     box.innerHTML = html;
 
   } catch (err) {
-    console.error(err);
-    box.innerHTML = "❌ Lỗi tải danh sách: " + err.message;
+
+    console.error("Lỗi tải danh sách Bay Cúp 2:", err);
+
+    box.innerHTML =
+      "❌ Lỗi tải danh sách: " + err.message;
   }
 }
