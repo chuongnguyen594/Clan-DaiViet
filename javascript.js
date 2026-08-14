@@ -1,63 +1,37 @@
-function api(action, params = {}) {
-    return new Promise((resolve, reject) => {
+async function api(action, params = {}) {
 
-        const callbackName =
-            "jsonCallback_" +
-            Date.now() +
-            "_" +
-            Math.random().toString(36).substring(2);
+  const query = new URLSearchParams({
+    action: action,
+    ...params
+  });
 
-        const query = new URLSearchParams({
-            action: action,
-            ...params,
-            callback: callbackName
-        });
+  const url =
+    "https://script.google.com/macros/s/AKfycbzlhETATxd9MHSD1Ce3e_uIqtD-sTSAA0nu6W1Iia6dXjYi6Ecv35jTYujelPkoJRIAaA/exec?" +
+    query.toString();
 
-        const url =
-            "https://script.google.com/macros/s/AKfycbzlhETATxd9MHSD1Ce3e_uIqtD-sTSAAOnu6W1Iia6dXjYi6Ecv35jTYujelPkoJRIAaA/exec?" +
-            query.toString();
+  const response = await fetch(url, {
+    method: "GET",
+    mode: "cors",
+    redirect: "follow",
+    cache: "no-store"
+  });
 
-        const script = document.createElement("script");
+  if (!response.ok) {
+    throw new Error("API lỗi: " + response.status);
+  }
 
-        let finished = false;
+  const text = await response.text();
 
-        window[callbackName] = function(data) {
-            if (finished) return;
+  if (!text) {
+    throw new Error("API không trả dữ liệu");
+  }
 
-            finished = true;
-
-            delete window[callbackName];
-            script.remove();
-
-            resolve(data);
-        };
-
-        script.onerror = function() {
-            if (finished) return;
-
-            finished = true;
-
-            delete window[callbackName];
-            script.remove();
-
-            reject(new Error("Không kết nối được Google Apps Script"));
-        };
-
-        script.src = url;
-
-        document.body.appendChild(script);
-
-        setTimeout(() => {
-            if (finished) return;
-
-            finished = true;
-
-            delete window[callbackName];
-            script.remove();
-
-            reject(new Error("API quá thời gian phản hồi"));
-        }, 15000);
-    });
+  try {
+    return JSON.parse(text);
+  } catch (err) {
+    console.error("API trả về:", text);
+    throw new Error("API trả dữ liệu không hợp lệ");
+  }
 }
 function showPage(page) {
 
@@ -1401,7 +1375,7 @@ async function taiDanhSachBayCup2() {
   box.innerHTML = "⏳ Đang tải danh sách...";
 
   try {
-    const data = await api("BayCupHuyenThoai2");
+    const data = await api("getDanhSachBayCup2");
 
     console.log("Dữ liệu Bay Cúp 2:", data);
 
