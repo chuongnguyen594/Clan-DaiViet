@@ -383,61 +383,347 @@ function showPage(page) {
       `;
       break;
         case "media":
-      content.innerHTML = `
-        <h1>🎬 MEDIA CENTER</h1>
-        <p>CLAN ĐẠI VIỆT - MEDIA</p>
 
-        <hr>
+  content.innerHTML = `
+    <h1>🎬 MEDIA CENTER</h1>
+    <p>CLAN ĐẠI VIỆT - MEDIA</p>
+    <hr>
+
+    <div id="mediaCenter">
+      <div style="
+        text-align:center;
+        padding:40px;
+        color:#ffcc00;
+        font-size:22px;
+      ">
+        ⏳ Đang tải Media...
+      </div>
+    </div>
+  `;
+
+  api("MediaCenter")
+    .then(function(data) {
+
+      const box = document.getElementById("mediaCenter");
+
+      if (!box) return;
+
+      if (!Array.isArray(data) || data.length === 0) {
+
+        box.innerHTML = `
+          <div style="
+            text-align:center;
+            padding:40px;
+            color:#ffcc00;
+            font-size:22px;
+          ">
+            📭 Chưa có dữ liệu Media
+          </div>
+        `;
+
+        return;
+      }
+
+      renderMediaCenter(data);
+
+    })
+    .catch(function(err) {
+
+      const box = document.getElementById("mediaCenter");
+
+      if (box) {
+
+        box.innerHTML = `
+          <div style="
+            text-align:center;
+            padding:40px;
+            color:#ff4444;
+            font-size:20px;
+          ">
+            ❌ Lỗi tải Media: ${err.message}
+          </div>
+        `;
+
+      }
+
+      console.error("Lỗi MediaCenter:", err);
+
+    });
+
+  break;  
+  }
+}
+function getYouTubeEmbedUrl(url) {
+
+  if (!url) return "";
+
+  url = String(url).trim();
+
+  let videoId = "";
+
+  let match = url.match(/youtu\.be\/([^?&/]+)/);
+
+  if (match) {
+    videoId = match[1];
+  }
+
+  if (!videoId) {
+    match = url.match(/[?&]v=([^?&]+)/);
+
+    if (match) {
+      videoId = match[1];
+    }
+  }
+
+  if (!videoId) {
+    match = url.match(/youtube\.com\/shorts\/([^?&/]+)/);
+
+    if (match) {
+      videoId = match[1];
+    }
+  }
+
+  if (!videoId) return "";
+
+  return "https://www.youtube.com/embed/" + videoId;
+}
+
+
+function escapeMediaHtml(text) {
+
+  if (text === null || text === undefined) {
+    return "";
+  }
+
+  return String(text)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
+
+function renderMediaCenter(data) {
+
+  const box = document.getElementById("mediaCenter");
+
+  if (!box) return;
+
+  let html = "";
+
+  const nhom = [
+    {
+      ten: "🔥 VIDEO MỚI NHẤT",
+      loai: "Video mới nhất"
+    },
+    {
+      ten: "🔥 HIGHLIGHT",
+      loai: "Highlight"
+    },
+    {
+      ten: "🎬 FULL MATCH",
+      loai: "Full Match"
+    },
+    {
+      ten: "⚔️ 5VS5",
+      loai: "5vs5"
+    },
+    {
+      ten: "⚔️ 3VS3",
+      loai: "3vs3"
+    },
+    {
+      ten: "🥊 SOLO 1VS1",
+      loai: "Solo 1vs1"
+    },
+    {
+      ten: "📺 LIVESTREAM",
+      loai: "Livestream"
+    },
+    {
+      ten: "⭐ TOP 3 SAO",
+      loai: "Top 3 ⭐"
+    },
+    {
+      ten: "🛡️ TOP PHÒNG THỦ",
+      loai: "Top Phòng Thủ"
+    }
+  ];
+
+  nhom.forEach(function(group) {
+
+    const videos = data.filter(function(item) {
+
+      return String(item.Loai || "").trim().toLowerCase()
+        === String(group.loai).trim().toLowerCase();
+
+    });
+
+    if (videos.length === 0) {
+      return;
+    }
+
+    html += `
+      <section style="margin-bottom:40px;">
+
+        <h2 style="
+          color:#FFD700;
+          border-left:5px solid #FFD700;
+          padding-left:12px;
+          margin-bottom:20px;
+        ">
+          ${group.ten}
+        </h2>
 
         <div style="
           display:grid;
-          grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+          grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
           gap:25px;
-          margin-top:25px;
+        ">
+    `;
+
+    videos.forEach(function(item) {
+
+      const title =
+        escapeMediaHtml(item.TieuDe || "Video Đại Việt Esport");
+
+      const moTa =
+        escapeMediaHtml(item.MoTa || "");
+
+      const ngay =
+        escapeMediaHtml(item.NgayDang || "");
+
+      const youtube =
+        getYouTubeEmbedUrl(item.LinkYouTube);
+
+      html += `
+        <div style="
+          background:linear-gradient(145deg,#222,#111);
+          border:1px solid #444;
+          border-radius:15px;
+          padding:15px;
+          box-shadow:0 0 15px rgba(255,215,0,.15);
         ">
 
-          <div style="
-            background:#222;
-            padding:25px;
-            border-radius:15px;
-            border:1px solid #444;
-            text-align:center;
-          ">
-            <div style="font-size:50px;">🎥</div>
-            <h2>VIDEO THI ĐẤU</h2>
-            <p>Các video trận đấu của Clan Đại Việt</p>
-          </div>
+          ${
+            youtube
+            ?
+            `
+            <div style="
+              position:relative;
+              width:100%;
+              aspect-ratio:16/9;
+              overflow:hidden;
+              border-radius:10px;
+              background:#000;
+            ">
 
-          <div style="
-            background:#222;
-            padding:25px;
-            border-radius:15px;
-            border:1px solid #444;
-            text-align:center;
-          ">
-            <div style="font-size:50px;">📸</div>
-            <h2>HÌNH ẢNH</h2>
-            <p>Hình ảnh hoạt động và giải đấu</p>
-          </div>
+              <iframe
+                src="${youtube}"
+                title="${title}"
+                style="
+                  width:100%;
+                  height:100%;
+                  border:0;
+                "
+                allow="accelerometer;
+                       autoplay;
+                       clipboard-write;
+                       encrypted-media;
+                       gyroscope;
+                       picture-in-picture;
+                       web-share"
+                allowfullscreen>
+              </iframe>
 
-          <div style="
-            background:#222;
-            padding:25px;
-            border-radius:15px;
-            border:1px solid #444;
-            text-align:center;
+            </div>
+            `
+            :
+            `
+            <div style="
+              aspect-ratio:16/9;
+              background:#151515;
+              border-radius:10px;
+              display:flex;
+              align-items:center;
+              justify-content:center;
+              color:#777;
+              font-size:20px;
+            ">
+              📭 Chưa có video
+            </div>
+            `
+          }
+
+          <h3 style="
+            color:white;
+            margin:15px 0 8px;
           ">
-            <div style="font-size:50px;">🏆</div>
-            <h2>KHOẢNH KHẮC GIẢI ĐẤU</h2>
-            <p>Những khoảnh khắc đáng nhớ của Đại Việt Esport</p>
-          </div>
+            ${title}
+          </h3>
+
+          ${
+            ngay
+            ?
+            `
+            <div style="
+              color:#FFD700;
+              font-size:14px;
+              margin-bottom:8px;
+            ">
+              📅 ${ngay}
+            </div>
+            `
+            :
+            ""
+          }
+
+          ${
+            moTa
+            ?
+            `
+            <div style="
+              color:#ccc;
+              line-height:1.5;
+              font-size:15px;
+            ">
+              ${moTa}
+            </div>
+            `
+            :
+            ""
+          }
 
         </div>
       `;
-      break;  
-  }
-}
 
+    });
+
+    html += `
+        </div>
+      </section>
+    `;
+
+  });
+
+  if (!html) {
+
+    html = `
+      <div style="
+        text-align:center;
+        padding:40px;
+        color:#ffcc00;
+        font-size:22px;
+      ">
+        📭 Chưa có video nào
+      </div>
+    `;
+
+  }
+
+  box.innerHTML = html;
+}
 function taoBang(data) {
   if (!data || data.length == 0) {
     return `
