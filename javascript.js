@@ -382,6 +382,59 @@ function showPage(page) {
         <p>Vinh danh huyền thoại</p>
       `;
       break;
+        case "media":
+      content.innerHTML = `
+        <h1>🎬 MEDIA CENTER</h1>
+        <p>CLAN ĐẠI VIỆT - MEDIA</p>
+
+        <hr>
+
+        <div style="
+          display:grid;
+          grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+          gap:25px;
+          margin-top:25px;
+        ">
+
+          <div style="
+            background:#222;
+            padding:25px;
+            border-radius:15px;
+            border:1px solid #444;
+            text-align:center;
+          ">
+            <div style="font-size:50px;">🎥</div>
+            <h2>VIDEO THI ĐẤU</h2>
+            <p>Các video trận đấu của Clan Đại Việt</p>
+          </div>
+
+          <div style="
+            background:#222;
+            padding:25px;
+            border-radius:15px;
+            border:1px solid #444;
+            text-align:center;
+          ">
+            <div style="font-size:50px;">📸</div>
+            <h2>HÌNH ẢNH</h2>
+            <p>Hình ảnh hoạt động và giải đấu</p>
+          </div>
+
+          <div style="
+            background:#222;
+            padding:25px;
+            border-radius:15px;
+            border:1px solid #444;
+            text-align:center;
+          ">
+            <div style="font-size:50px;">🏆</div>
+            <h2>KHOẢNH KHẮC GIẢI ĐẤU</h2>
+            <p>Những khoảnh khắc đáng nhớ của Đại Việt Esport</p>
+          </div>
+
+        </div>
+      `;
+      break;  
   }
 }
 
