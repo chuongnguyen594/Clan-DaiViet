@@ -688,30 +688,12 @@ function xuLyDangKyBayCupHuyenThoai2(e) {
 
 function getBayCupHuyenThoai2() {
 
+
   const ss = SpreadsheetApp.openById(SHEET_ID);
 
-  const sheet =
-    ss.getSheetByName("BayCupHuyenThoai2");
+  const sheet = ss.getSheetByName("BayCupHuyenThoai2");
 
-  // Nếu chưa có sheet
-  if (!sheet) {
-
-    return [];
-
-  }
-
-  const lastRow = sheet.getLastRow();
-
-  // Chỉ có hàng tiêu đề
-  if (lastRow <= 1) {
-
-    return [];
-
-  }
-
-  return sheet
-    .getRange(2, 1, lastRow - 1, 6)
-    .getDisplayValues();
+  return sheet.getDataRange().getDisplayValues();
 
 }
 
